@@ -8,17 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/style.css">
     
     <script>
-
+        // Configuração do Tailwind (pode ser movida para um arquivo JS se preferir, ou para o CSS com @apply)
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FF4D00', 
-                        dark: '#313131',    
-                        light: '#FFFFFF',
+                        primary: '#FF4D00', // Laranja Supply Hub
+                        dark: '#313131',    // Cinza escuro para textos e fundos
+                        light: '#FFFFFF',   // Branco
                     }
                 }
             }
@@ -26,108 +26,108 @@
     </script>
 </head>
 <body class="bg-gray-50 min-h-screen flex">
-    <aside id="mainSidebar" class="sidebar sidebar--expanded bg-dark text-white h-screen fixed left-0 top-0 overflow-y-auto z-30">
-        <div class="sidebar__header flex items-center justify-between p-4 border-b border-gray-700">
-            <div class="sidebar__brand flex items-center">
+    <aside id="sidebar" class="sidebar sidebar-expanded bg-dark text-white h-screen fixed left-0 top-0 overflow-y-auto z-30">
+        <div class="flex items-center justify-between p-4 border-b border-gray-700">
+            <div class="flex items-center">
                 <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
                 </svg>
-                <span class="sidebar__brand-text ml-2 text-xl font-bold">Supply<span class="text-primary">Hub</span></span>
+                <span class="ml-2 text-xl font-bold sidebar-text">Supply<span class="text-primary">Hub</span></span>
             </div>
-            <button id="sidebarToggleBtn" class="sidebar__toggle-btn text-gray-300 hover:text-white" aria-label="Alternar menu lateral" aria-expanded="true">
+            <button id="toggleSidebar" class="text-gray-300 hover:text-white" aria-label="Alternar menu lateral" aria-expanded="true">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
 
-        <div class="sidebar__user-profile p-4 border-b border-gray-700">
+        <div class="p-4 border-b border-gray-700">
             <div class="flex items-center">
-                <div class="user-avatar w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     JP
                 </div>
-                <div class="sidebar__user-info ml-3">
+                <div class="ml-3 sidebar-text">
                     <p class="font-medium">João Paulo</p>
                     <p class="text-xs text-gray-400">Produtor</p>
                 </div>
             </div>
         </div>
 
-        <nav class="sidebar__nav p-4" aria-label="Navegação principal do site">
+        <nav class="p-4" aria-label="Navegação principal">
             <ul class="space-y-2">
                 <li>
-                    <a href="index.html" class="nav-item flex items-center p-2 rounded-md bg-primary text-white" aria-current="page">
-                        <i class="fas fa-home w-5 nav-item__icon" aria-hidden="true"></i>
-                        <span class="nav-item__text ml-3">Início</span>
+                    <a href="#" class="flex items-center p-2 rounded-md bg-primary text-white" aria-current="page">
+                        <i class="fas fa-home w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Início</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-item flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-box w-5 nav-item__icon" aria-hidden="true"></i>
-                        <span class="nav-item__text ml-3">Produtos</span>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-box w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Produtos</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-item flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-shopping-cart w-5 nav-item__icon" aria-hidden="true"></i>
-                        <span class="nav-item__text ml-3">Pedidos</span>
-                    </a>
-                </li>
-                 <li>
-                    <a href="#" class="nav-item flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-chart-line w-5 nav-item__icon" aria-hidden="true"></i>
-                        <span class="nav-item__text ml-3">Análises</span>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-shopping-cart w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Pedidos</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-item flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-handshake w-5 nav-item__icon" aria-hidden="true"></i>
-                        <span class="nav-item__text ml-3">Parcerias</span>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-chart-line w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Análises</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-item flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-money-bill-wave w-5 nav-item__icon" aria-hidden="true"></i>
-                        <span class="nav-item__text ml-3">Investimentos</span>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-handshake w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Parcerias</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-item flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-cog w-5 nav-item__icon" aria-hidden="true"></i>
-                        <span class="nav-item__text ml-3">Configurações</span>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-money-bill-wave w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Investimentos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-cog w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Configurações</span>
                     </a>
                 </li>
             </ul>
         </nav>
 
-        <div class="sidebar__logout mt-auto p-4 border-t border-gray-700">
-            <a href="#" class="nav-item flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                <i class="fas fa-sign-out-alt w-5 nav-item__icon" aria-hidden="true"></i>
-                <span class="nav-item__text ml-3">Sair</span>
+        <div class="mt-auto p-4 border-t border-gray-700">
+            <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                <i class="fas fa-sign-out-alt w-5" aria-hidden="true"></i>
+                <span class="ml-3 sidebar-text">Sair</span>
             </a>
         </div>
     </aside>
 
-    <main id="pageMainContent" class="main-content main-content--shifted main-content--transition flex-1">
-        <header class="main-header bg-white shadow-sm">
-            <div class="main-header__inner flex justify-between items-center px-6 py-3">
-                <div class="main-header__search flex items-center">
+    <main id="mainContent" class="main-content-shifted main-content-transition flex-1">
+        <header class="bg-white shadow-sm">
+            <div class="flex justify-between items-center px-6 py-3">
+                <div class="flex items-center">
                     <div class="relative">
-                        <label for="headerSearchInput" class="sr-only">Buscar produtos, fornecedores</label>
-                        <input type="text" id="headerSearchInput" placeholder="Buscar produtos, fornecedores..." class="pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-80">
+                        <label for="search-input" class="sr-only">Buscar produtos, fornecedores</label>
+                        <input type="text" id="search-input" placeholder="Buscar produtos, fornecedores..." class="pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-80">
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div class="main-header__actions flex items-center space-x-4">
-                    <button class="action-button relative p-2 text-gray-600 hover:text-primary" aria-label="Notificações">
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Notificações">
                         <i class="fas fa-bell" aria-hidden="true"></i>
-                        <span class="notification-dot absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
+                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
                     </button>
-                    <button class="action-button relative p-2 text-gray-600 hover:text-primary" aria-label="Mensagens">
+                    <button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Mensagens">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span class="notification-dot absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
+                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
                     </button>
-                    <div class="separator border-l border-gray-300 h-6"></div>
-                    <div class="user-menu flex items-center">
-                        <div class="user-avatar w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold" aria-label="Avatar do usuário João Paulo">
+                    <div class="border-l border-gray-300 h-6"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold" aria-label="Avatar do usuário João Paulo">
                             JP
                         </div>
                     </div>
@@ -135,15 +135,15 @@
             </div>
         </header>
 
-        <div class="page-content-area p-6">
-            <section class="welcome-banner bg-gradient-to-r from-primary to-orange-500 rounded-lg shadow-lg p-6 mb-6 text-white" aria-labelledby="welcomeBannerHeading">
+        <div class="p-6">
+            <section class="bg-gradient-to-r from-primary to-orange-500 rounded-lg shadow-lg p-6 mb-6 text-white" aria-labelledby="welcome-banner-heading">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div>
-                        <h1 id="welcomeBannerHeading" class="text-2xl font-bold mb-2">Bem-vindo ao Supply Hub!</h1>
+                        <h1 id="welcome-banner-heading" class="text-2xl font-bold mb-2">Bem-vindo ao Supply Hub!</h1>
                         <p class="mb-4">Conectando pequenos produtores e indústrias de forma sustentável.</p>
-                        <a href="#featuredProductsHeading" class="button button--light font-medium px-4 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                        <button class="bg-white text-primary font-medium px-4 py-2 rounded-md hover:bg-gray-100 transition-colors">
                             Explorar Produtos
-                        </a>
+                        </button>
                     </div>
                     <div class="mt-4 md:mt-0">
                         <svg class="w-40 h-40" viewBox="0 0 200 200" fill="none" aria-hidden="true">
@@ -155,46 +155,46 @@
                 </div>
             </section>
 
-            <section class="stats-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6" aria-label="Estatísticas principais">
-                <div class="stat-card bg-white rounded-lg shadow p-6">
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6" aria-label="Estatísticas principais">
+                <div class="bg-white rounded-lg shadow p-6">
                     <div class="flex items-center">
-                        <div class="stat-card__icon p-3 rounded-full bg-orange-100 text-primary">
+                        <div class="p-3 rounded-full bg-orange-100 text-primary">
                             <i class="fas fa-box-open text-xl" aria-hidden="true"></i>
                         </div>
-                        <div class="stat-card__info ml-4">
+                        <div class="ml-4">
                             <h3 class="text-gray-500 text-sm">Produtos Disponíveis</h3>
                             <p class="text-2xl font-semibold text-dark">1,254</p>
                         </div>
                     </div>
                 </div>
-                <div class="stat-card bg-white rounded-lg shadow p-6">
+                <div class="bg-white rounded-lg shadow p-6">
                     <div class="flex items-center">
-                        <div class="stat-card__icon p-3 rounded-full bg-green-100 text-green-600">
+                        <div class="p-3 rounded-full bg-green-100 text-green-600">
                             <i class="fas fa-users text-xl" aria-hidden="true"></i>
                         </div>
-                        <div class="stat-card__info ml-4">
+                        <div class="ml-4">
                             <h3 class="text-gray-500 text-sm">Produtores Ativos</h3>
                             <p class="text-2xl font-semibold text-dark">328</p>
                         </div>
                     </div>
                 </div>
-                <div class="stat-card bg-white rounded-lg shadow p-6">
+                <div class="bg-white rounded-lg shadow p-6">
                     <div class="flex items-center">
-                        <div class="stat-card__icon p-3 rounded-full bg-blue-100 text-blue-600">
+                        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
                             <i class="fas fa-handshake text-xl" aria-hidden="true"></i>
                         </div>
-                        <div class="stat-card__info ml-4">
+                        <div class="ml-4">
                             <h3 class="text-gray-500 text-sm">Parcerias Realizadas</h3>
                             <p class="text-2xl font-semibold text-dark">86</p>
                         </div>
                     </div>
                 </div>
-                <div class="stat-card bg-white rounded-lg shadow p-6">
+                <div class="bg-white rounded-lg shadow p-6">
                     <div class="flex items-center">
-                        <div class="stat-card__icon p-3 rounded-full bg-purple-100 text-purple-600">
+                        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
                             <i class="fas fa-certificate text-xl" aria-hidden="true"></i>
                         </div>
-                        <div class="stat-card__info ml-4">
+                        <div class="ml-4">
                             <h3 class="text-gray-500 text-sm">Certificações Sustentáveis</h3>
                             <p class="text-2xl font-semibold text-dark">42</p>
                         </div>
@@ -202,24 +202,24 @@
                 </div>
             </section>
 
-            <section class="products-section mb-6" aria-labelledby="featuredProductsHeading">
-                <div class="products-section__header flex justify-between items-center mb-4">
-                    <h2 id="featuredProductsHeading" class="text-xl font-bold text-dark">Produtos em Destaque</h2>
-                    <div class="products-view-toggle flex items-center space-x-2">
-                        <button id="productGridViewBtn" class="view-toggle-btn p-2 bg-primary text-white rounded-l-md" aria-label="Visualizar em grade" aria-pressed="true">
+            <section class="mb-6" aria-labelledby="products-heading">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="products-heading" class="text-xl font-bold text-dark">Produtos em Destaque</h2>
+                    <div class="flex items-center space-x-2">
+                        <button id="gridViewBtn" class="p-2 bg-primary text-white rounded-l-md" aria-label="Visualizar em grade" aria-pressed="true">
                             <i class="fas fa-th" aria-hidden="true"></i>
                         </button>
-                        <button id="productListViewBtn" class="view-toggle-btn p-2 bg-gray-200 text-gray-600 rounded-r-md" aria-label="Visualizar em lista" aria-pressed="false">
+                        <button id="listViewBtn" class="p-2 bg-gray-200 text-gray-600 rounded-r-md" aria-label="Visualizar em lista" aria-pressed="false">
                             <i class="fas fa-list" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
 
-                <div class="product-filters bg-white p-4 rounded-lg shadow mb-4">
+                <div class="bg-white p-4 rounded-lg shadow mb-4">
                     <form class="flex flex-wrap items-end gap-4">
-                        <div class="filter-group flex-1 min-w-[200px]">
-                            <label for="categoryFilterSelect" class="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
-                            <select id="categoryFilterSelect" class="filter-select w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <div class="flex-1 min-w-[200px]">
+                            <label for="filter-category" class="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
+                            <select id="filter-category" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
                                 <option>Todas as categorias</option>
                                 <option>Matéria-prima</option>
                                 <option>Equipamentos</option>
@@ -227,9 +227,9 @@
                                 <option>Produtos acabados</option>
                             </select>
                         </div>
-                        <div class="filter-group flex-1 min-w-[200px]">
-                            <label for="locationFilterSelect" class="block text-sm font-medium text-gray-700 mb-1">Localização</label>
-                            <select id="locationFilterSelect" class="filter-select w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <div class="flex-1 min-w-[200px]">
+                            <label for="filter-location" class="block text-sm font-medium text-gray-700 mb-1">Localização</label>
+                            <select id="filter-location" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
                                 <option>Todas as localizações</option>
                                 <option>Norte</option>
                                 <option>Nordeste</option>
@@ -238,9 +238,9 @@
                                 <option>Sul</option>
                             </select>
                         </div>
-                        <div class="filter-group flex-1 min-w-[200px]">
-                            <label for="certificationFilterSelect" class="block text-sm font-medium text-gray-700 mb-1">Certificação</label>
-                            <select id="certificationFilterSelect" class="filter-select w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <div class="flex-1 min-w-[200px]">
+                            <label for="filter-certification" class="block text-sm font-medium text-gray-700 mb-1">Certificação</label>
+                            <select id="filter-certification" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
                                 <option>Todas as certificações</option>
                                 <option>Orgânico</option>
                                 <option>Comércio Justo</option>
@@ -249,103 +249,97 @@
                             </select>
                         </div>
                         <div>
-                            <button type="submit" class="button button--primary px-4 py-2 rounded-md hover:bg-orange-600 transition-colors">
+                            <button type="submit" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors">
                                 Filtrar
                             </button>
                         </div>
                     </form>
                 </div>
 
-                <div id="productGridView" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div id="gridView" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <article class="product-card bg-white rounded-lg shadow overflow-hidden">
-                        <a href="produto.html" class="product-card__link block hover:shadow-xl transition-shadow duration-300" aria-label="Ver detalhes do produto Tecido Orgânico">
-                            <div class="product-card__image-container h-48 bg-gray-200 relative">
-                                <div class="badge absolute top-2 right-2 bg-primary text-white px-2 py-1 text-xs font-bold rounded">
+                        <div class="h-48 bg-gray-200 relative">
+                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
+                                Destaque
+                            </div>
+                            <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                            </svg>
+                            </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-dark">Tecido Orgânico</h3>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Orgânico</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Tecido 100% algodão orgânico para confecção</p>
+                            <div class="mt-3 flex items-center">
+                                <span class="text-primary font-bold">R$ 45,00</span>
+                                <span class="text-xs text-gray-500 ml-1">/metro</span>
+                            </div>
+                            <div class="mt-3 flex items-center text-sm text-gray-500">
+                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
+                                <span>São Paulo, SP</span>
+                            </div>
+                            <div class="mt-4 flex justify-between">
+                                <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">
+                                    Ver detalhes
+                                </button>
+                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
+                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card bg-white rounded-lg shadow overflow-hidden">
+                        <div class="h-48 bg-gray-200">
+                             <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                            </svg>
+                           </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-dark">Máquina de Corte</h3>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Equipamento</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Máquina de corte industrial para tecidos</p>
+                            <div class="mt-3 flex items-center">
+                                <span class="text-primary font-bold">R$ 2.800,00</span>
+                                <span class="text-xs text-gray-500 ml-1">/unidade</span>
+                            </div>
+                            <div class="mt-3 flex items-center text-sm text-gray-500">
+                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
+                                <span>Belo Horizonte, MG</span>
+                            </div>
+                            <div class="mt-4 flex justify-between">
+                                <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">
+                                    Ver detalhes
+                                </button>
+                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
+                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                     </div>
+
+                <div id="listView" class="hidden space-y-4">
+                    <article class="product-card bg-white rounded-lg shadow overflow-hidden">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-1/4 h-48 md:h-auto bg-gray-200 relative">
+                                <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
                                     Destaque
                                 </div>
                                 <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
                                 </svg>
-                            </div>
-                            <div class="product-card__content p-4">
-                                <div class="flex justify-between items-start">
-                                    <h3 class="product-card__title font-bold text-dark">Tecido Orgânico</h3>
-                                    <span class="product-card__tag bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Orgânico</span>
                                 </div>
-                                <p class="product-card__description text-gray-600 text-sm mt-1">Tecido 100% algodão orgânico para confecção</p>
-                                <div class="product-card__price-info mt-3 flex items-center">
-                                    <span class="text-primary font-bold">R$ 45,00</span>
-                                    <span class="text-xs text-gray-500 ml-1">/metro</span>
-                                </div>
-                                <div class="product-card__location mt-3 flex items-center text-sm text-gray-500">
-                                    <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                    <span>São Paulo, SP</span>
-                                </div>
-                                <div class="product-card__actions mt-4 flex justify-between items-center">
-                                    {/* O span simula um botão, já que o card é o link principal */}
-                                    <span class="button button--primary text-sm !py-1 !px-3">Ver detalhes</span> 
-                                    <button type="button" class="button button--outline-primary text-sm !py-1 !px-3" aria-label="Adicionar Tecido Orgânico ao carrinho">
-                                        <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                    </button>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="product-card bg-white rounded-lg shadow overflow-hidden">
-                         <a href="produto.html" class="product-card__link block hover:shadow-xl transition-shadow duration-300" aria-label="Ver detalhes do produto Máquina de Corte">
-                            <div class="product-card__image-container h-48 bg-gray-200">
-                                <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <div class="product-card__content p-4">
-                                <div class="flex justify-between items-start">
-                                    <h3 class="product-card__title font-bold text-dark">Máquina de Corte</h3>
-                                    <span class="product-card__tag bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Equipamento</span>
-                                </div>
-                                <p class="product-card__description text-gray-600 text-sm mt-1">Máquina de corte industrial para tecidos</p>
-                                <div class="product-card__price-info mt-3 flex items-center">
-                                    <span class="text-primary font-bold">R$ 2.800,00</span>
-                                    <span class="text-xs text-gray-500 ml-1">/unidade</span>
-                                </div>
-                                <div class="product-card__location mt-3 flex items-center text-sm text-gray-500">
-                                    <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                    <span>Belo Horizonte, MG</span>
-                                </div>
-                                <div class="product-card__actions mt-4 flex justify-between items-center">
-                                     <span class="button button--primary text-sm !py-1 !px-3">Ver detalhes</span>
-                                    <button type="button" class="button button--outline-primary text-sm !py-1 !px-3" aria-label="Adicionar Máquina de Corte ao carrinho">
-                                        <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                    </button>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                    {/* Adicione mais Product Cards aqui, todos linkando para produto.html por enquanto */}
-                </div>
-
-                <div id="productListView" class="product-list-view hidden space-y-4">
-                    <article class="product-list-item product-card bg-white rounded-lg shadow overflow-hidden">
-                        <div class="flex flex-col md:flex-row">
-                            <div class="md:w-1/4 h-48 md:h-auto bg-gray-200 relative">
-                                <a href="produto.html" class="block w-full h-full" aria-label="Imagem do produto Tecido Orgânico">
-                                    <div class="badge absolute top-2 right-2 bg-primary text-white px-2 py-1 text-xs font-bold rounded">
-                                        Destaque
-                                    </div>
-                                    <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </a>
-                            </div>
                             <div class="p-4 md:w-3/4">
                                 <div class="flex flex-col md:flex-row justify-between items-start">
                                     <div class="flex-grow">
                                         <div class="flex items-center">
-                                            <h3 class="font-bold text-dark text-lg">
-                                                <a href="produto.html" class="hover:text-primary">Tecido Orgânico</a>
-                                            </h3>
-                                            <span class="product-card__tag bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full ml-2">Orgânico</span>
+                                            <h3 class="font-bold text-dark text-lg">Tecido Orgânico</h3>
+                                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full ml-2">Orgânico</span>
                                         </div>
                                         <p class="text-gray-600 mt-2 text-sm">Tecido 100% algodão orgânico para confecção. Produzido por pequenos produtores com práticas sustentáveis.</p>
                                         <div class="mt-3 flex items-center">
@@ -361,10 +355,10 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col space-y-2 mt-4 md:mt-0 md:ml-4 md:flex-shrink-0">
-                                        <a href="produto.html" class="button button--primary w-full md:w-auto text-center">
+                                        <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors w-full md:w-auto">
                                             Ver detalhes
-                                        </a>
-                                        <button type="button" class="button button--outline-primary w-full md:w-auto" aria-label="Adicionar Tecido Orgânico ao carrinho">
+                                        </button>
+                                        <button class="border border-primary text-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-colors w-full md:w-auto">
                                             <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
                                         </button>
                                     </div>
@@ -372,21 +366,20 @@
                             </div>
                         </div>
                     </article>
-                    {/* */}
-                </div>
+                    </div>
 
-                <nav class="pagination mt-6 flex justify-center" aria-label="Paginação de produtos">
+                <nav class="mt-6 flex justify-center" aria-label="Paginação de produtos">
                     <ul class="flex items-center space-x-1">
                         <li>
-                            <button class="pagination__button px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página anterior">
+                            <button class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página anterior">
                                 <i class="fas fa-chevron-left" aria-hidden="true"></i>
                             </button>
                         </li>
-                        <li><button class="pagination__button pagination__button--active px-3 py-1 rounded-md bg-primary text-white" aria-current="page" aria-label="Página 1">1</button></li>
-                        <li><button class="pagination__button px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página 2">2</button></li>
-                        <li><button class="pagination__button px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página 3">3</button></li>
+                        <li><button class="px-3 py-1 rounded-md bg-primary text-white" aria-current="page" aria-label="Página 1">1</button></li>
+                        <li><button class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página 2">2</button></li>
+                        <li><button class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página 3">3</button></li>
                         <li>
-                            <button class="pagination__button px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Próxima página">
+                            <button class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Próxima página">
                                 <i class="fas fa-chevron-right" aria-hidden="true"></i>
                             </button>
                         </li>
@@ -394,8 +387,8 @@
                 </nav>
             </section>
 
-            <section class="sustainable-partners-section mb-6" aria-labelledby="sustainablePartnersHeading">
-                <h2 id="sustainablePartnersHeading" class="text-xl font-bold text-dark mb-4">Parceiros Sustentáveis</h2>
+            <section class="mb-6" aria-labelledby="partners-heading">
+                <h2 id="partners-heading" class="text-xl font-bold text-dark mb-4">Parceiros Sustentáveis</h2>
                 <div class="bg-white rounded-lg shadow p-6">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                         <div class="flex flex-col items-center">
@@ -432,7 +425,7 @@
                         </div>
                     </div>
                     <div class="mt-6 text-center">
-                        <button class="button button--outline-primary">
+                        <button class="bg-white border border-primary text-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-colors">
                             Ver todos os parceiros
                         </button>
                     </div>
@@ -440,52 +433,28 @@
             </section>
         </div>
 
-        <footer class="page-footer bg-dark text-white mt-auto"> {/* Adicionado mt-auto para empurrar para baixo se o conteúdo for curto */}
-            <div class="container mx-auto px-6 py-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 text-white">Supply Hub</h3>
-                        <p class="text-gray-400">Conectando pequenos produtores e indústrias de forma sustentável.</p>
+        <footer class="bg-white border-t border-gray-200 py-4">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-sm text-gray-600">
+                            © <span id="currentYear">2023</span> Supply Hub. Todos os direitos reservados.
+                        </p>
                     </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4 text-white">Navegação</h4>
-                        <ul class="space-y-2">
-                            <li><a href="index.html" class="text-gray-400 hover:text-primary">Início</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-primary">Produtos</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-primary">Sobre Nós</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-primary">Contato</a></li>
-                        </ul>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nossa página no Facebook">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nosso perfil no Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nosso perfil no LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary" aria-label="Siga-nos no Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
                     </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4 text-white">Legal</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-primary">Termos de Serviço</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-primary">Política de Privacidade</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-primary">Política de Cookies</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4 text-white">Siga-nos</h4>
-                        <div class="social-links flex space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-primary" aria-label="Visite nossa página no Facebook">
-                                <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-primary" aria-label="Visite nosso perfil no Instagram">
-                                <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-primary" aria-label="Visite nosso perfil no LinkedIn">
-                                <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-primary" aria-label="Siga-nos no Twitter">
-                                <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-t border-gray-700 mt-8 pt-6 text-center">
-                    <p class="text-sm text-gray-500">
-                        © <span id="footerCurrentYear">2023</span> Supply Hub. Todos os direitos reservados.
-                    </p>
                 </div>
             </div>
         </footer>
