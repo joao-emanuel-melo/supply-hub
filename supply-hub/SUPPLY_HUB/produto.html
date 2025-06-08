@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe do Produto - Supply Hub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="css/produto-style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4D00', 
+                        white: '#FFFFFF',
+                        dark: '#313131',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="product-page"> {/* Adicionada classe para escopo de estilo se necessário */}
+    <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                {/* Link para a Home Page */}
+                <a href="index.html" class="text-2xl font-bold">Supply Hub</a>
+            </div>
+            <nav class="flex items-center space-x-4" aria-label="Navegação do cabeçalho">
+                <a href="#" class="hover:text-white/80" aria-label="Buscar">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="#" class="hover:text-white/80" aria-label="Carrinho de compras">
+                    <i class="fas fa-shopping-cart"></i>
+                    {/* Pode adicionar um contador de itens no carrinho aqui */}
+                </a>
+                <a href="#" class="hover:text-white/80" aria-label="Perfil do usuário">
+                    <i class="fas fa-user"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-6">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <nav aria-label="breadcrumb" class="mb-6 text-sm text-gray-600">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center">
+                        <a href="index.html" class="hover:text-primary">Início</a>
+                        <i class="fas fa-chevron-right mx-2 text-xs text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="#" class="hover:text-primary">Mobiliário</a> {/* Categoria do produto */}
+                        <i class="fas fa-chevron-right mx-2 text-xs text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center text-gray-800" aria-current="page">
+                        Cadeira Ergonômica Profissional
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <div class="carousel-container mb-6">
+                        <div class="carousel" id="productImageCarousel">
+                            <div class="carousel-item">
+                                <div class="carousel-image-placeholder">
+                                    {/* Imagem real iria aqui: <img src="path/to/image1.jpg" alt="Cadeira Ergonômica - Vista Frontal"> */}
+                                    <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="10">Imagem 1</text></svg>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-image-placeholder">
+                                    <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="10">Imagem 2</text></svg>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-image-placeholder">
+                                   <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="10">Imagem 3</text></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-nav prev" aria-label="Imagem anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-nav next" aria-label="Próxima imagem">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="carousel-dots" id="productCarouselDots">
+                        {/* Os dots serão gerados pelo JavaScript ou podem ser adicionados manualmente se o número de slides for fixo */}
+                    </div>
+                </div>
+
+                <div>
+                    <h1 class="text-3xl font-bold text-dark mb-2">Cadeira Ergonômica Profissional</h1>
+                    <div class="flex items-center mb-4">
+                        <div class="rating-stars flex mr-2" aria-label="Avaliação: 4.5 de 5 estrelas">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <a href="#tab-reviews-content" class="text-dark/70 hover:text-primary">(127 avaliações)</a>
+                    </div>
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <span class="text-3xl font-bold text-primary">R$ 1.299,90</span>
+                            <span class="text-dark/70 line-through ml-2">R$ 1.599,90</span>
+                        </div>
+                        <span class="badge badge--in-stock bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">Em estoque</span>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row gap-4 mb-6">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" id="quantityDecrementBtn" aria-label="Diminuir quantidade">-</button>
+                            <input type="text" class="quantity-input" id="productQuantityInput" value="1" readonly aria-label="Quantidade do produto">
+                            <button class="quantity-btn" id="quantityIncrementBtn" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <button class="button btn-primary py-3 px-6 rounded-lg flex-grow transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            Adicionar ao Carrinho
+                        </button>
+                        <button class="button btn-secondary py-3 px-6 rounded-lg flex-grow transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-bolt mr-2"></i>
+                            Comprar Agora
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info-tabs mt-8">
+                <div class="tabs-navigation border-b border-gray-300 mb-6">
+                    <div class="flex flex-wrap -mb-px">
+                        <button class="tab-button active" data-tab-target="#tab-reviews-content">
+                            <i class="fas fa-star mr-2"></i>Avaliações
+                        </button>
+                        <button class="tab-button" data-tab-target="#tab-details-content">
+                            <i class="fas fa-info-circle mr-2"></i>Informações
+                        </button>
+                        <button class="tab-button" data-tab-target="#tab-supplier-content">
+                            <i class="fas fa-building mr-2"></i>Fornecedor
+                        </button>
+                    </div>
+                </div>
+
+                <div id="tab-reviews-content" class="tab-content-panel active">
+                    <h2 class="text-xl font-semibold mb-4 text-dark">Avaliações de Clientes</h2>
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <div class="rating-stars flex mr-2" aria-label="Média de avaliação: 4.5 de 5 estrelas">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-lg font-medium text-dark">4.5 de 5</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <article class="review-item border-b border-gray-200 pb-4">
+                                <header class="flex items-center mb-2">
+                                    <div class="user-avatar w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold mr-3">M</div>
+                                    <div>
+                                        <h4 class="font-medium text-dark">Maria Silva</h4>
+                                        <div class="rating-stars flex" aria-label="Avaliação de Maria: 5 de 5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                    </div>
+                                    <time datetime="2023-05-12" class="ml-auto text-sm text-dark/70">12/05/2023</time>
+                                </header>
+                                <p class="text-dark">Excelente cadeira! Muito confortável para longas horas de trabalho. A montagem foi fácil e o material é de ótima qualidade. Recomendo!</p>
+                            </article>
+                            {/* */}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-details-content" class="tab-content-panel">
+                    <h2 class="text-xl font-semibold mb-4 text-dark">Detalhes do Produto</h2>
+                    <div class="space-y-6">
+                        <section aria-labelledby="product-description-heading">
+                            <h3 id="product-description-heading" class="text-lg font-semibold mb-3 text-dark">Descrição</h3>
+                            <p class="text-dark">A Cadeira Ergonômica Profissional foi projetada para oferecer o máximo de conforto...</p>
+                        </section>
+                        <section aria-labelledby="product-specs-heading">
+                            <h3 id="product-specs-heading" class="text-lg font-semibold mb-3 text-dark">Especificações Técnicas</h3>
+                            <ul class="list-disc pl-5 text-dark space-y-2">
+                                <li>Material: Estrutura em aço cromado e assento em malha respirável</li>
+                                {/* */}
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+
+                <div id="tab-supplier-content" class="tab-content-panel">
+                     <h2 class="text-xl font-semibold mb-4 text-dark">Informações do Fornecedor</h2>
+                     {/* */}
+                </div>
+            </div>
+        </div>
+        
+        <section class="related-products bg-white rounded-lg shadow-lg p-6" aria-labelledby="related-products-heading">
+            <h2 id="related-products-heading" class="text-2xl font-bold mb-6 text-dark">Produtos Relacionados</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <article class="product-card">
+                    <div class="product-card__image-placeholder">
+                        <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="8">Produto Rel.</text></svg>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-dark mb-2">Apoio para Pés Ergonômico</h3>
+                        <div class="rating-stars flex mb-2" aria-label="Avaliação: 4 de 5 estrelas">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                        <p class="text-primary font-bold">R$ 189,90</p>
+                    </div>
+                </article>
+                {/* */}
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer bg-dark text-white mt-10">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Supply Hub</h3>
+                    <p class="text-white/70">Sua plataforma completa para compra de produtos industriais e corporativos.</p>
+                </div>
+                {/* */}
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-6 text-center text-white/70">
+                <p>© <span id="footerCurrentYear"></span> Supply Hub. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/produto-script.js"></script>
+</body>
+</html>

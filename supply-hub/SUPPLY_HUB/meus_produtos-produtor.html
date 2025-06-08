@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Hub - Pagina Inicial</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4D00',
+                        dark: '#313131',
+                        light: '#FFFFFF',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex">
+    <aside id="sidebar" class="sidebar sidebar-expanded bg-dark text-white h-screen fixed left-0 top-0 overflow-y-auto z-30">
+        <div class="flex items-center justify-between p-4 border-b border-gray-700">
+            <div class="flex items-center">
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
+                </svg>
+                <span class="ml-2 text-xl font-bold sidebar-text">Supply<span class="text-primary">Hub</span></span>
+            </div>
+            <button id="toggleSidebar" class="text-gray-300 hover:text-white" aria-label="Alternar menu lateral" aria-expanded="true">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!--Formatação do nome do usuário Inicio-->
+        <div class="p-4 border-b border-gray-700">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                    JP
+                </div>
+                <div class="ml-3 sidebar-text">
+                    <p class="font-medium">João Paulo</p>
+                    <p class="text-xs text-gray-400">Produtor</p>
+                </div>
+            </div>
+        </div><!--Formatação do nome do usuário Inicio-->
+        <!--Menu de navegação-->
+        <nav class="p-4" aria-label="Navegação principal">
+            <ul class="space-y-2">
+                <li>
+                    <a href="index.HTML" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-home w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Início</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="meus_produtos-produtor.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-box w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Produtos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-shopping-cart w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Pedidos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-chart-line w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Análises</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-money-bill-wave w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Investimentos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-cog w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="mt-auto p-4 border-t border-gray-700">
+            <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                <i class="fas fa-sign-out-alt w-5" aria-hidden="true"></i>
+                <span class="ml-3 sidebar-text">Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <main id="mainContent" class="main-content-shifted main-content-transition flex-1">
+        <header class="bg-white shadow-sm">
+            <div class="flex justify-between items-center px-6 py-3">
+                <div class="flex items-center">
+                    <div class="relative">
+                        <label for="search-input" class="sr-only">Buscar produtos, fornecedores</label>
+                        <input type="text" id="search-input" placeholder="Buscar produtos, fornecedores..." class="pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-80">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Notificações">
+                        <i class="fas fa-bell" aria-hidden="true"></i>
+                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
+                    </button>
+                    <button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Mensagens">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
+                    </button>
+                    <div class="border-l border-gray-300 h-6"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold" aria-label="Avatar do usuário João Paulo">
+                            JP
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-6">
+            <section class="bg-gradient-to-r from-primary to-orange-500 rounded-lg shadow-lg p-6 mb-6 text-white" aria-labelledby="welcome-banner-heading">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div>
+                        <h1 id="welcome-banner-heading" class="text-2xl font-bold mb-2">Bem-vindo ao Supply Hub!</h1>
+                        <p class="mb-4">Conectando pequenos produtores e indústrias de forma sustentável.</p>
+                        <button class="bg-white text-primary font-medium px-4 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                            Explorar Produtos
+                        </button>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <svg class="w-40 h-40" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                            <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"></circle>
+                            <path d="M65 80L100 50L135 80L135 130L100 160L65 130L65 80Z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"></path>
+                            <path d="M85 100L100 90L115 100L115 120L100 130L85 120L85 100Z" fill="white"></path>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6" aria-label="Estatísticas principais">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-orange-100 text-primary">
+                            <i class="fas fa-box-open text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-gray-500 text-sm">Produtos Disponíveis</h3>
+                            <p class="text-2xl font-semibold text-dark">1,254</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-green-100 text-green-600">
+                            <i class="fas fa-users text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-gray-500 text-sm">Produtores Ativos</h3>
+                            <p class="text-2xl font-semibold text-dark">328</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                            <i class="fas fa-handshake text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-gray-500 text-sm">Parcerias Realizadas</h3>
+                            <p class="text-2xl font-semibold text-dark">86</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-certificate text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-gray-500 text-sm">Certificações Sustentáveis</h3>
+                            <p class="text-2xl font-semibold text-dark">42</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-6" aria-labelledby="products-heading">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="products-heading" class="text-xl font-bold text-dark">Produtos em Destaque</h2>
+                    <div class="flex items-center space-x-2">
+                        <button id="gridViewBtn" class="p-2 bg-primary text-white rounded-l-md" aria-label="Visualizar em grade" aria-pressed="true">
+                            <i class="fas fa-th" aria-hidden="true"></i>
+                        </button>
+                        <button id="listViewBtn" class="p-2 bg-gray-200 text-gray-600 rounded-r-md" aria-label="Visualizar em lista" aria-pressed="false">
+                            <i class="fas fa-list" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow mb-4">
+                    <form class="flex flex-wrap items-end gap-4">
+                        <div class="flex-1 min-w-[200px]">
+                            <label for="filter-category" class="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
+                            <select id="filter-category" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>Todas as categorias</option>
+                                <option>Matéria-prima</option>
+                                <option>Equipamentos</option>
+                                <option>Serviços</option>
+                                <option>Produtos acabados</option>
+                            </select>
+                        </div>
+                        <div class="flex-1 min-w-[200px]">
+                            <label for="filter-location" class="block text-sm font-medium text-gray-700 mb-1">Localização</label>
+                            <select id="filter-location" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>Todas as localizações</option>
+                                <option>Norte</option>
+                                <option>Nordeste</option>
+                                <option>Centro-Oeste</option>
+                                <option>Sudeste</option>
+                                <option>Sul</option>
+                            </select>
+                        </div>
+                        <div class="flex-1 min-w-[200px]">
+                            <label for="filter-certification" class="block text-sm font-medium text-gray-700 mb-1">Certificação</label>
+                            <select id="filter-certification" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>Todas as certificações</option>
+                                <option>Orgânico</option>
+                                <option>Comércio Justo</option>
+                                <option>Carbono Neutro</option>
+                                <option>ISO 14001</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors">
+                                Filtrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+
+        <footer class="bg-white border-t border-gray-200 py-4">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-sm text-gray-600">
+                            © <span id="currentYear">2023</span> Supply Hub. Todos os direitos reservados.
+                        </p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nossa página no Facebook">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nosso perfil no Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nosso perfil no LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary" aria-label="Siga-nos no Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+/* css/style.css */
+
+/* Estilos personalizados para transições e efeitos que podem ser mais complexos com Tailwind puro ou para organização */
+.sidebar {
+    transition: width 0.3s ease; /* Transição na largura */
+}
+.sidebar-collapsed {
+    width: 5rem; /* Ajuste conforme necessário para ícones */
+}
+.sidebar-expanded {
+    width: 16rem; /* Largura padrão do sidebar expandido */
+}
+
+/* Classes para controlar a margem do conteúdo principal baseado no estado do sidebar */
+.main-content-shifted { 
+    margin-left: 16rem; 
+}
+.main-content-normal { 
+    margin-left: 5rem;
+}
+.main-content-transition {
+    transition: margin-left 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    /* Tailwind já oferece classes de sombra, mas você pode definir uma personalizada aqui se necessário */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.product-card {
+    transition: all 0.3s ease;
+}
+
+/* Esconder texto no sidebar colapsado - alternativa ao JS para cada elemento de texto */
+.sidebar-collapsed .sidebar-text {
+    display: none;
+}
+
+/* Pequeno ajuste para garantir que o texto apareça quando expandido se a regra acima for muito genérica */
+.sidebar-expanded .sidebar-text {
+    display: inline; /* ou block, flex, dependendo do contexto original do elemento */
+}
+
+/* Classe para esconder elementos apenas visualmente, mas mantê-los para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

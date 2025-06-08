@@ -1,0 +1,254 @@
+/* css/produto-style.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --orange: #FF4D00;
+    --white: #FFFFFF;
+    --dark: #313131;
+    --gray-light: #f5f5f5;
+    --gray-medium: #e0e0e0;
+    --gray-text: #313131; /* Usando var(--dark) para consistência */
+    --gray-text-light: rgba(49, 49, 49, 0.7); /* var(--dark) com opacidade */
+}
+
+body.product-page { /* Aplicar somente a esta página se necessário */
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--white); /* Tailwind: bg-white */
+    color: var(--dark); /* Tailwind: text-dark */
+}
+
+/* Estilos do Carrossel */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px; /* Tailwind: rounded-lg */
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    flex-shrink: 0; /* Garante que os itens não encolham */
+}
+
+.carousel-image-placeholder {
+    background-color: var(--gray-light); /* Tailwind: bg-gray-100 ou bg-zinc-100 */
+    height: 20rem; /* Tailwind: h-80 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem; /* Tailwind: rounded-lg */
+}
+.carousel-image-placeholder svg {
+    width: 50%;
+    height: 50%;
+    max-width: 12rem; /* Tailwind: w-48 */
+    max-height: 12rem; /* Tailwind: h-48 */
+    color: var(--gray-medium); /* Tailwind: text-gray-300 ou text-zinc-300 */
+}
+
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px; /* Tailwind: w-10 */
+    height: 40px; /* Tailwind: h-10 */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%; /* Tailwind: rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    color: var(--orange); /* Tailwind: text-primary */
+}
+
+.carousel-nav.prev {
+    left: 10px; /* Tailwind: left-2.5 (aproximado) */
+}
+
+.carousel-nav.next {
+    right: 10px; /* Tailwind: right-2.5 (aproximado) */
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Tailwind: mt-2.5 (aproximado) */
+}
+
+.dot {
+    width: 10px; /* Tailwind: w-2.5 (aproximado) */
+    height: 10px; /* Tailwind: h-2.5 (aproximado) */
+    border-radius: 50%; /* Tailwind: rounded-full */
+    background-color: var(--gray-medium); /* Tailwind: bg-gray-300 ou bg-zinc-300 */
+    margin: 0 5px; /* Tailwind: mx-1 (aproximado) */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--orange); /* Tailwind: bg-primary */
+}
+
+/* Estilos das Abas */
+.tabs-navigation .tab-button {
+    display: inline-block;
+    padding: 1rem; /* Tailwind: p-4 */
+    border-bottom-width: 2px; /* Tailwind: border-b-2 */
+    border-color: transparent; /* Tailwind: border-transparent */
+    border-top-left-radius: 0.5rem; /* Tailwind: rounded-t-lg */
+    border-top-right-radius: 0.5rem; /* Tailwind: rounded-t-lg */
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    font-weight: 500; /* Tailwind: font-medium */
+    color: var(--gray-text-light); /* Tailwind: text-dark/70 */
+}
+
+.tabs-navigation .tab-button:hover {
+    color: var(--dark); /* Tailwind: hover:text-dark */
+    border-color: var(--gray-medium); /* Tailwind: hover:border-gray-300 */
+}
+
+.tabs-navigation .tab-button.active {
+    color: var(--orange); /* Tailwind: text-primary */
+    border-color: var(--orange); /* Tailwind: border-primary */
+}
+
+
+.tab-content-panel {
+    display: none;
+    padding-top: 1rem; /* Adiciona um espaço acima do conteúdo da aba */
+}
+
+.tab-content-panel.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos de Avaliação */
+.rating-stars {
+    color: var(--orange); /* Tailwind: text-primary */
+}
+.rating-stars .far { /* Para estrela vazia, se usar Font Awesome Regular */
+    color: var(--gray-medium);
+}
+
+.review-item .user-avatar {
+    background-color: rgba(var(--orange), 0.1); /* Tailwind: bg-primary/10 */
+    color: var(--orange);
+}
+
+/* Seletor de Quantidade */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--gray-medium); /* Tailwind: border border-gray-300 */
+    border-radius: 8px; /* Tailwind: rounded-lg */
+    overflow: hidden;
+}
+
+.quantity-btn {
+    width: 36px; /* Aproximado: w-9 */
+    height: 36px; /* Aproximado: h-9 */
+    background-color: var(--gray-light); /* Tailwind: bg-gray-100 */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    transition: background-color 0.2s ease;
+}
+.quantity-btn:hover {
+    background-color: #e9e9e9; /* Um tom mais escuro de var(--gray-light) */
+}
+
+.quantity-input {
+    width: 50px; /* Aproximado: w-12 */
+    height: 36px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    background-color: var(--white);
+    color: var(--dark);
+    -moz-appearance: textfield; /* Remove setas em Firefox */
+}
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Remove setas em Chrome, Safari, Edge, Opera */
+  margin: 0;
+}
+
+
+.quantity-input:focus {
+    outline: none;
+}
+
+/* Botões Genéricos (reutilizáveis) */
+.button { /* Adicionado para consistência com o que foi feito na home */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem; /* Tailwind: py-3 px-6 */
+    border-radius: 0.5rem; /* Tailwind: rounded-lg */
+    font-weight: 500; /* Tailwind: font-medium */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+.btn-primary {
+    background-color: var(--orange);
+    color: var(--white);
+}
+.btn-primary:hover {
+    background-color: #e64500; /* Tom mais escuro de laranja */
+}
+
+.btn-secondary {
+    background-color: var(--dark);
+    color: var(--white);
+}
+.btn-secondary:hover {
+    background-color: #252525; /* Tom mais escuro de dark */
+}
+
+/* Estilos de Card de Produto (para "Produtos Relacionados") */
+.related-products .product-card {
+    border: 1px solid var(--gray-medium); /* Tailwind: border border-gray-300 */
+    transition: all 0.3s ease;
+}
+
+.related-products .product-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Tailwind: shadow-lg (aproximado) */
+    transform: translateY(-3px);
+}
+.related-products .product-card__image-placeholder {
+    background-color: var(--gray-light);
+    height: 12rem; /* Tailwind: h-48 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.related-products .product-card__image-placeholder svg {
+     width: 6rem; /* Tailwind: w-24 */
+     height: 6rem; /* Tailwind: h-24 */
+     color: var(--gray-medium); /* Tailwind: text-gray-300 */
+}
+
+/* Classes utilitárias de cor (se não quiser usar Tailwind para tudo ou para sobrescrever) */
+.bg-primary { background-color: var(--orange); }
+.bg-dark { background-color: var(--dark); }
+.text-primary { color: var(--orange); }
+.text-dark { color: var(--dark); }
+.border-primary { border-color: var(--orange); }
