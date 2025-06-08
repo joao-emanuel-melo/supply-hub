@@ -25,11 +25,75 @@
     </script>
 </head>
 <body class="product-page"> {/* Adicionada classe para escopo de estilo se necessário */}
+    <div class="flex items-center justify-between p-4 border-b border-gray-700">
+            <div class="flex items-center">
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
+                </svg>
+                <span class="ml-2 text-xl font-bold sidebar-text">Supply<span class="text-primary">Hub</span></span>
+            </div>
+            <button id="toggleSidebar" class="text-gray-300 hover:text-white" aria-label="Alternar menu lateral" aria-expanded="true">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!--Formatação do nome do usuário Inicio-->
+        <div class="p-4 border-b border-gray-700">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                    JP
+                </div>
+                <div class="ml-3 sidebar-text">
+                    <p class="font-medium">João Paulo</p>
+                    <p class="text-xs text-gray-400">Produtor</p>
+                </div>
+            </div>
+        </div><!--Formatação do nome do usuário Inicio-->
+        <!--Menu de navegação-->
+        <nav class="p-4" aria-label="Navegação principal">
+            <ul class="space-y-2">
+                <li>
+                    <a href="home.HTML" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-home w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Início</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="meus_produtos-produtor.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-box w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Produtos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-shopping-cart w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Pedidos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-chart-line w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Análises</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-money-bill-wave w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Investimentos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-cog w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     <header class="bg-primary text-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 {/* Link para a Home Page */}
-                <a href="index.html" class="text-2xl font-bold">Supply Hub</a>
+                <a href="home.html" class="text-2xl font-bold">Supply Hub</a>
             </div>
             <nav class="flex items-center space-x-4" aria-label="Navegação do cabeçalho">
                 <a href="#" class="hover:text-white/80" aria-label="Buscar">

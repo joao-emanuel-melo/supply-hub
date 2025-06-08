@@ -1,0 +1,32 @@
+/* Estilos para a mensagem de erro */
+.error-message {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.error-message.show {
+    max-height: 50px; /* Altura suficiente para exibir a mensagem */
+}
+
+/* Efeito de foco para o input e a label */
+.input-focus-effect:focus-within {
+    border-color: #FF4D00; /* Cor primária do seu tema */
+}
+
+.input-focus-effect:focus-within label {
+    color: #FF4D00; /* Cor primária do seu tema */
+    transform: translateY(-1.5rem);
+    font-size: 0.75rem; /* 12px */
+}
+
+/* Transição suave para a label */
+.input-focus-effect label {
+    transition: all 0.2s ease-out;
+}
+
+/* Move a label para cima quando o input está preenchido (e não apenas em foco) */
+.input-focus-effect input:not(:placeholder-shown) + label {
+    transform: translateY(-1.5rem);
+    font-size: 0.75rem; /* 12px */
+}

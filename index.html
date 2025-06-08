@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login-style.css">
+    <title>Supply Hub - Acesso</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#FF4D00',
+                    dark: '#313131',
+                    light: '#FFFFFF',
+                }
+            }
+        }
+    }
+    </script>
+    
+</head>
+<body class="bg-light min-h-screen flex flex-col">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
+                </svg>
+                <span class="ml-2 text-2xl font-bold text-dark">Supply<span class="text-primary">Hub</span></span>
+            </div>
+            <div>
+                <button class="text-dark hover:text-primary transition-colors">Ajuda</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center px-4 py-12 bg-gray-50">
+        <div class="w-full max-w-md">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="px-6 py-8">
+                    
+                    <div>
+                        <form id="loginForm" class="space-y-6">
+                            <h2 class="text-2xl font-bold text-center text-dark mb-8">Acesse sua conta</h2>
+                            
+                            <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                <input type="email" id="email" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required>
+                                <label for="email" class="absolute top-3 left-0 text-gray-500 pointer-events-none">E-mail</label>
+                                <div id="emailError" class="error-message text-sm text-red-500 mt-1"></div>
+                            </div>
+                            
+                            <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                <input type="password" id="password" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required minlength="6">
+                                <label for="password" class="absolute top-3 left-0 text-gray-500 pointer-events-none">Senha</label>
+                                <div id="passwordError" class="error-message text-sm text-red-500 mt-1"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                    <label for="remember-me" class="ml-2 block text-sm text-gray-600">Lembrar-me</label>
+                                </div>
+                                <a href="#" class="text-sm text-primary hover:underline">Esqueceu a senha?</a>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="w-full py-3 px-4 bg-primary hover:bg-orange-600 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                                    Entrar
+                                </button>
+                            </div>
+                            
+                            <div id="generalError" class="hidden p-3 bg-red-50 text-red-700 text-sm rounded-md"></div>
+                            
+                             <div class="text-center">
+                                <p class="text-sm text-gray-600">
+                                    Não tem uma conta? 
+                                    <a href="#" id="showRegisterLink" class="font-medium text-primary hover:underline">
+                                        Cadastre-se agora
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                        
+                        <form id="registerForm" class="space-y-6 hidden">
+                            <h2 class="text-2xl font-bold text-center text-dark mb-8">Crie sua conta</h2>
+        
+                            <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                <input type="text" id="registerName" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required>
+                                <label for="registerName" class="absolute top-3 left-0 text-gray-500 pointer-events-none">Nome completo</label>
+                            </div>
+                    
+                            <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                <input type="email" id="registerEmail" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required>
+                                <label for="registerEmail" class="absolute top-3 left-0 text-gray-500 pointer-events-none">E-mail</label>
+                            </div>
+                            
+                            <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                <input type="password" id="registerPassword" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required minlength="6">
+                                <label for="registerPassword" class="absolute top-3 left-0 text-gray-500 pointer-events-none">Crie uma senha</label>
+                            </div>
+                    
+                            <div>
+                                <button type="submit" class="w-full py-3 px-4 bg-primary hover:bg-orange-600 text-white font-medium rounded-md shadow-sm">
+                                    Criar Conta
+                                </button>
+                            </div>
+
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">
+                                    Já tem uma conta?
+                                    <a href="#" id="showLoginLink" class="font-medium text-primary hover:underline">
+                                        Faça o login
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                    <p class="text-xs text-center text-gray-500">
+                        Ao acessar, você concorda com nossos 
+                        <a href="#" class="text-primary hover:underline">Termos de Serviço</a> e 
+                        <a href="#" class="text-primary hover:underline">Política de Privacidade</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/login-scrpit.js"></script>
+</body>
+</html>
