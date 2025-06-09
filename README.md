@@ -29,7 +29,7 @@
 - **Row-Level Security** (Controle de acesso)  
 
 ### Frontend  
-- Framework moderno (React/Vue/Angular) *[adicione conforme seu projeto]*  
+- HTML5, CSS3 e JavaScript
 - Biblioteca de UI (Tailwind/Material UI)  
 
 ## ⚙️ Pré-requisitos  
