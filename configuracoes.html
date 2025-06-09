@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Hub - Configurações</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4D00',
+                        dark: '#313131',
+                        light: '#FFFFFF',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex">
+    <aside id="sidebar" class="sidebar sidebar-expanded bg-dark text-white h-screen fixed left-0 top-0 overflow-y-auto z-30">
+        <div class="flex items-center justify-between p-4 border-b border-gray-700">
+            <div class="flex items-center">
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
+                </svg>
+                <span class="ml-2 text-xl font-bold sidebar-text">Supply<span class="text-primary">Hub</span></span>
+            </div>
+            <button id="toggleSidebar" class="text-gray-300 hover:text-white" aria-label="Alternar menu lateral" aria-expanded="true">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!--Formatação do nome do usuário Inicio-->
+        <div class="p-4 border-b border-gray-700">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                    JP
+                </div>
+                <div class="ml-3 sidebar-text">
+                    <p class="font-medium">João Paulo</p>
+                    <p class="text-xs text-gray-400">Produtor</p>
+                </div>
+            </div>
+        </div><!--Formatação do nome do usuário Inicio-->
+        <!--Menu de navegação-->
+        <nav class="p-4" aria-label="Navegação principal">
+            <ul class="space-y-2">
+                <li>
+                    <a href="home.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-home w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Início</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="meus_produtos-produtor.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-box w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Produtos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-shopping-cart w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Pedidos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-chart-line w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Análises</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-money-bill-wave w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Investimentos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="perfil_usuario.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-user w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Meu Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="configuracoes.html" class="flex items-center p-2 rounded-md bg-gray-700 text-white">
+                        <i class="fas fa-cog w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="mt-auto p-4 border-t border-gray-700">
+            <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                <i class="fas fa-sign-out-alt w-5" aria-hidden="true"></i>
+                <span class="ml-3 sidebar-text">Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <main id="mainContent" class="main-content-shifted main-content-transition flex-1">
+        <header class="bg-white dark:bg-gray-800 shadow-sm">
+            <div class="flex justify-between items-center px-6 py-3">
+                <div class="flex items-center">
+                    <div class="relative">
+                        <label for="search-input" class="sr-only">Buscar produtos, fornecedores</label>
+                        <input type="text" id="search-input" placeholder="Buscar produtos, fornecedores..." class="pl-10 pr-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-80">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-600 dark:text-gray-300 hover:text-primary" aria-label="Notificações">
+                        <i class="fas fa-bell" aria-hidden="true"></i>
+                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
+                    </button>
+                    <button class="relative p-2 text-gray-600 dark:text-gray-300 hover:text-primary" aria-label="Mensagens">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
+                    </button>
+                    <div class="border-l border-gray-300 dark:border-gray-600 h-6"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold" aria-label="Avatar do usuário João Paulo">
+                            JP
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-6">
+            <section class="mb-6">
+                <h1 class="text-2xl font-bold text-dark dark:text-white mb-6">Configurações</h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Modo Noturno -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h2 class="text-lg font-semibold text-dark dark:text-white">Modo Noturno</h2>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Altere a aparência do sistema para modo claro ou escuro</p>
+                            </div>
+                            <button id="toggleDarkMode" class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 dark:bg-primary transition-colors">
+                                <span class="sr-only">Alternar modo noturno</span>
+                                <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1 dark:translate-x-6"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Idioma -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                        <div class="mb-4">
+                            <h2 class="text-lg font-semibold text-dark dark:text-white mb-2">Idioma</h2>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Selecione o idioma preferido para o sistema</p>
+                            <select id="languageSelect" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="pt-BR">Português (Brasil)</option>
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                            © <span id="currentYear">2023</span> Supply Hub. Todos os direitos reservados.
+                        </p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" aria-label="Visite nossa página no Facebook">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" aria-label="Visite nosso perfil no Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" aria-label="Visite nosso perfil no LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary" aria-label="Siga-nos no Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Função para alternar o modo noturno
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+            updateDarkModeButton(isDark);
+        }
+
+        // Função para atualizar o estado do botão de modo noturno
+        function updateDarkModeButton(isDark) {
+            const button = document.getElementById('toggleDarkMode');
+            if (isDark) {
+                button.classList.add('bg-primary');
+                button.classList.remove('bg-gray-200');
+            } else {
+                button.classList.remove('bg-primary');
+                button.classList.add('bg-gray-200');
+            }
+        }
+
+        // Função para carregar preferências salvas
+        function loadPreferences() {
+            // Carregar modo noturno
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            if (darkMode) {
+                document.documentElement.classList.add('dark');
+                updateDarkModeButton(true);
+            }
+
+            // Carregar idioma
+            const language = localStorage.getItem('language') || 'pt-BR';
+            document.getElementById('languageSelect').value = language;
+        }
+
+        // Função para salvar idioma
+        function saveLanguage(language) {
+            localStorage.setItem('language', language);
+            // Aqui você pode adicionar a lógica para traduzir o site
+            alert('Idioma alterado com sucesso! A página será recarregada.');
+            window.location.reload();
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPreferences();
+
+            // Modo noturno
+            document.getElementById('toggleDarkMode').addEventListener('click', toggleDarkMode);
+
+            // Idioma
+            document.getElementById('languageSelect').addEventListener('change', (e) => {
+                saveLanguage(e.target.value);
+            });
+        });
+    </script>
+</body>
+</html> 

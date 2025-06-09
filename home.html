@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -21,8 +22,99 @@
             }
         }
     </script>
+    <style>
+        .sidebar {
+            width: 280px;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar-collapsed {
+            width: 80px;
+        }
+
+        .sidebar-collapsed .sidebar-text {
+            display: none;
+        }
+
+        .main-content-shifted {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content-shifted.sidebar-collapsed {
+            margin-left: 80px;
+        }
+
+        .main-content-transition {
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Animações para os cards de produtos */
+        .product-card {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .product-card.grid-view {
+            transform-origin: center;
+            animation: gridToGrid 0.5s ease-in-out;
+        }
+
+        .product-card.list-view {
+            transform-origin: left;
+            animation: gridToList 0.5s ease-in-out;
+        }
+
+        @keyframes gridToList {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes gridToGrid {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Animação para a lista de produtos */
+        #lista-de-produtos {
+            transition: all 0.5s ease-in-out;
+        }
+
+        #lista-de-produtos.grid-view {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        #lista-de-produtos.list-view {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-screen flex">
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex">
     <aside id="sidebar" class="sidebar sidebar-expanded bg-dark text-white h-screen fixed left-0 top-0 overflow-y-auto z-30">
         <div class="flex items-center justify-between p-4 border-b border-gray-700">
             <div class="flex items-center">
@@ -35,18 +127,21 @@
                 <i class="fas fa-bars"></i>
             </button>
         </div>
+
         <!--Formatação do nome do usuário Inicio-->
+
         <div class="p-4 border-b border-gray-700">
             <div class="flex items-center">
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold" id="userInitials">
                     JP
                 </div>
                 <div class="ml-3 sidebar-text">
-                    <p class="font-medium">João Paulo</p>
-                    <p class="text-xs text-gray-400">Produtor</p>
+                    <p class="font-medium" id="userName">João Paulo</p>
+                    <p class="text-xs text-gray-400" id="userRole">Produtor</p>
                 </div>
             </div>
-        </div><!--Formatação do nome do usuário Inicio-->
+        </div>
+
         <!--Menu de navegação-->
         <nav class="p-4" aria-label="Navegação principal">
             <ul class="space-y-2">
@@ -60,6 +155,12 @@
                     <a href="meus_produtos-produtor.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
                         <i class="fas fa-box w-5" aria-hidden="true"></i>
                         <span class="ml-3 sidebar-text">Produtos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="cadastro_produto.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-plus-circle w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Cadastrar Produto</span>
                     </a>
                 </li>
                 <li>
@@ -81,7 +182,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                    <a href="perfil_usuario.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-user w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Meu Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="configuracoes.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
                         <i class="fas fa-cog w-5" aria-hidden="true"></i>
                         <span class="ml-3 sidebar-text">Configurações</span>
                     </a>
@@ -126,6 +233,7 @@
             </div>
         </header>
 
+        <!--Início da seção de estatísticas principais-->
         <div class="p-6">
             <section class="bg-gradient-to-r from-primary to-orange-500 rounded-lg shadow-lg p-6 mb-6 text-white" aria-labelledby="welcome-banner-heading">
                 <div class="flex flex-col md:flex-row justify-between items-center">
@@ -146,53 +254,55 @@
                 </div>
             </section>
 
+            <!--Início das estatísticas principais-->
             <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6" aria-label="Estatísticas principais">
-                <div class="bg-white rounded-lg shadow p-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-orange-100 text-primary">
                             <i class="fas fa-box-open text-xl" aria-hidden="true"></i>
                         </div>
                         <div class="ml-4">
-                            <h3 class="text-gray-500 text-sm">Produtos Disponíveis</h3>
-                            <p class="text-2xl font-semibold text-dark">1,254</p>
+                            <h3 class="text-gray-500 dark:text-gray-400 text-sm">Produtos Disponíveis</h3>
+                            <p class="text-2xl font-semibold text-dark dark:text-white" id="totalProdutos">0</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow p-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-green-100 text-green-600">
                             <i class="fas fa-users text-xl" aria-hidden="true"></i>
                         </div>
                         <div class="ml-4">
-                            <h3 class="text-gray-500 text-sm">Produtores Ativos</h3>
-                            <p class="text-2xl font-semibold text-dark">328</p>
+                            <h3 class="text-gray-500 dark:text-gray-400 text-sm">Produtores Ativos</h3>
+                            <p class="text-2xl font-semibold text-dark dark:text-white" id="totalProdutores">0</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow p-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-blue-100 text-blue-600">
                             <i class="fas fa-handshake text-xl" aria-hidden="true"></i>
                         </div>
                         <div class="ml-4">
-                            <h3 class="text-gray-500 text-sm">Parcerias Realizadas</h3>
-                            <p class="text-2xl font-semibold text-dark">0</p>
+                            <h3 class="text-gray-500 dark:text-gray-400 text-sm">Parcerias Realizadas</h3>
+                            <p class="text-2xl font-semibold text-dark dark:text-white">10.000+</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow p-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-purple-100 text-purple-600">
                             <i class="fas fa-certificate text-xl" aria-hidden="true"></i>
                         </div>
                         <div class="ml-4">
-                            <h3 class="text-gray-500 text-sm">Certificações Sustentáveis</h3>
-                            <p class="text-2xl font-semibold text-dark">2</p>
+                            <h3 class="text-gray-500 dark:text-gray-400 text-sm">Certificações Sustentáveis</h3>
+                            <p class="text-2xl font-semibold text-dark dark:text-white">100</p>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!--Início da seção de produtos em destaque-->
             <section class="mb-6" aria-labelledby="products-heading">
                 <div class="flex justify-between items-center mb-4">
                     <h2 id="products-heading" class="text-xl font-bold text-dark">Produtos em Destaque</h2>
@@ -249,256 +359,13 @@
                         </div>
                     </form>
                 </div>
-                <!--Cards de produto 1-->
-                <div id="gridView" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" data-category="Orgânico" data-location="Sudeste" data-certification="">
-                    <article class="product-card bg-white rounded-lg shadow overflow-hidden">
-                        <div class="h-48 bg-gray-200 relative">
-                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
-                                Destaque
-                            </div>
-                                <img src="/imgs/tecido-organico.jpg" alt="tecido-organico" class="absolute inset-0 w-full h-full object-cover">
-                            </div>
-                            <br>
-                        <div class="p-4">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-bold text-dark">Tecido Orgânico</h4>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Orgânico</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mt-1">Tecido 100% algodão orgânico para confecção</p>
-                            <div class="mt-3 flex items-center">
-                                <span class="text-primary font-bold">R$ 45,00</span>
-                                <span class="text-xs text-gray-500 ml-1">/metro</span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                <span>São Paulo, SP</span>
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <a href="produto.html">
-                                    <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
-                                </a>
-                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
-                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                    <!--Cards de produto 2-->
-                    <article class="product-card bg-white rounded-lg shadow overflow-hidden" data-category="Ecológico" data-location="Sudeste" data-certification="">
-                        <div class="h-48 bg-gray-200 relative">
-                            <div>
-                                <img src="/imgs/tijolo.png" alt="tijolo-ecologico" class="absolute inset-0 w-full h-full object-cover">
-                            </div>
-                            <br>
-                           </div>
-                        <div class="p-4">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-bold text-dark">Tijolo Ecológico</h4>
-                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Ecológico</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mt-1">Matérial de construção</p>
-                            <div class="mt-3 flex items-center">
-                                <span class="text-primary font-bold">R$ 25,00</span>
-                                <span class="text-xs text-gray-500 ml-1">Unidade</span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                <span>Belo Horizonte, MG</span>
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <a href="produto.html">
-                                    <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
-                                </a>
-                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
-                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                    <!--Cards de produto 3-->
-                    <article class="product-card bg-white rounded-lg shadow overflow-hidden" data-category="Ecológico" data-location="Norte" data-certification="">
-                        <div class="h-48 bg-gray-200 relative">
-                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
-                                Destaque
-                            </div>
-                                <img src="/imgs/tinta.png" alt="tecido-organico" class="absolute inset-0 w-full h-full object-cover">
-                            </div>
-                            <br>
-                        <div class="p-4">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-bold text-dark">Tinta ecológica à base de terra ou látex natural</h4>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Ecológico</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mt-1">Tintas sem solventes petroquímicos, com baixa emissão de COVs</p>
-                            <div class="mt-3 flex items-center">
-                                <span class="text-primary font-bold">R$ 35,00</span>
-                                <span class="text-xs text-gray-500 ml-1">/Litro</span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                <span>Belem, PA</span>
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <a href="produto.html">
-                                    <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
-                                </a>
-                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
-                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                    <!--Cards de produto 4-->
-                    <article class="product-card bg-white rounded-lg shadow overflow-hidden" data-category="Embalagem" data-location="Sudeste" data-certification="">
-                        <div class="h-48 bg-gray-200 relative">
-                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
-                                Destaque
-                            </div>
-                                <img src="/imgs/plastico.avif" alt="tecido-organico" class="absolute inset-0 w-full h-full object-cover">
-                            </div>
-                            <br>
-                        <div class="p-4">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-bold text-dark">Bioplástico de mandioca</h4>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Embalagem</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mt-1">Filme biodegradável para embalagens alimentícias.</p>
-                            <div class="mt-3 flex items-center">
-                                <span class="text-primary font-bold">R$ 3,20</span>
-                                <span class="text-xs text-gray-500 ml-1">/folha (30x30cm)</span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                <span>São Paulo, SP</span>
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <a href="produto.html">
-                                    <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
-                                </a>
-                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
-                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                    <!--Cards de produto 5-->
-                    <article class="product-card bg-white rounded-lg shadow overflow-hidden" data-category="Energia Renovável" data-location="Nordeste" data-certification="">
-                        <div class="h-48 bg-gray-200 relative">
-                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
-                                Destaque
-                            </div>
-                                <img src="/imgs/placa-solar.png" alt="tecido-organico" class="absolute inset-0 w-full h-full object-cover">
-                            </div>
-                            <br>
-                        <div class="p-4">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-bold text-dark">Painéis solares reciclados</h4>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Energia Renovável</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mt-1">Painéis recondicionados com eficiência garantida</p>
-                            <div class="mt-3 flex items-center">
-                                <span class="text-primary font-bold">R$15.000,00</span>
-                                <span class="text-xs text-gray-500 ml-1">/kit completo</span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                <span>São Lourenço, PE</span>
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <a href="produto.html">
-                                    <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
-                                </a>
-                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
-                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                    <!--Cards de produto 6-->
-                    <article class="product-card bg-white rounded-lg shadow overflow-hidden" data-category="Orgânico" data-location="Nordeste" data-certification="">
-                        <div class="h-48 bg-gray-200 relative">
-                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
-                                Destaque
-                            </div>
-                                <img src="/imgs/poupa-fruta.avif" alt="tecido-organico" class="absolute inset-0 w-full h-full object-cover">
-                            </div>
-                            <br>
-                        <div class="p-4">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-bold text-dark">Polpa de frutas orgânicas congeladas (açaí, cupuaçu, manga)</h4>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Orgânico</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mt-1">Polpa 100% natural, sem conservantes, para sucos e sorvetes.</p>
-                            <div class="mt-3 flex items-center">
-                                <span class="text-primary font-bold">R$ 12,00</span>
-                                <span class="text-xs text-gray-500 ml-1">/kg (em lotes de 100kg)</span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                <span>Recife, PE</span>
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <a href="produto.html">
-                                    <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
-                                </a>
-                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
-                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                    <!--Cards de produto 7-->
-                    <article class="product-card bg-white rounded-lg shadow overflow-hidden" data-category="Orgânico" data-location="Nordeste" data-certification="">
-                        <div class="h-48 bg-gray-200 relative">
-                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
-                                Destaque
-                            </div>
-                                <img src="/imgs/tecido-organico.jpg" alt="tecido-organico" class="absolute inset-0 w-full h-full object-cover">
-                            </div>
-                            <br>
-                        <div class="p-4">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-bold text-dark">Serraria de madeira reflorestada (eucalipto ou pinus)</h4>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Orgânico</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mt-1">Madeira certificada para móveis ou construção.</p>
-                            <div class="mt-3 flex items-center">
-                                <span class="text-primary font-bold">R$ R$ 120,00</span>
-                                <span class="text-xs text-gray-500 ml-1">/m³</span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
-                                <span>João Pessoa, PB</span>
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <a href="produto.html">
-                                    <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
-                                </a>
-                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
-                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                <!--Fim do filtro de produtos-->
 
-                <nav class="mt-6 flex justify-center" aria-label="Paginação de produtos">
-                    <ul class="flex items-center space-x-1">
-                        <li>
-                            <button class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página anterior">
-                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                            </button>
-                        </li>
-                        <li><button class="px-3 py-1 rounded-md bg-primary text-white" aria-current="page" aria-label="Página 1">1</button></li>
-                        <li><button class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página 2">2</button></li>
-                        <li><button class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Página 3">3</button></li>
-                        <li>
-                            <button class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100" aria-label="Próxima página">
-                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
+                <div id="lista-de-produtos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+                <div class="paginacao mt-8 flex justify-center">
+                    <!-- Paginação será carregada aqui -->
+                </div>
             </section>
 
             <section class="mb-6" aria-labelledby="partners-heading">
@@ -574,6 +441,243 @@
         </footer>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Inicialização do Supabase
+        const supabaseUrl = 'https://fvzvspqvcxwlwfctmtdt.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2enZzcHF2Y3h3bHdmY3RtdGR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MzM3NDcsImV4cCI6MjA2NTAwOTc0N30.cDyPMw6u5mW7CBjImHfxlV0qmJ1hMtwQ9c0kT-vKibc'
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+
+        // Função para carregar produtos
+        async function carregarProdutos(pagina = 1) {
+            try {
+                console.log('Iniciando carregamento de produtos...')
+                
+                const itensPorPagina = 6;
+                const inicio = (pagina - 1) * itensPorPagina;
+                
+                // Busca o total de produtos para calcular o número de páginas
+                const { count: totalProdutos } = await supabase
+                    .from('produtos')
+                    .select('*', { count: 'exact', head: true });
+
+                const totalPaginas = Math.ceil(totalProdutos / itensPorPagina);
+                
+                const { data: listadeProdutos, error: errolistaProdutos } = await supabase
+                    .from('produtos')
+                    .select(`
+                        *,
+                        categorias (
+                            nome
+                        ),
+                        certificacoes (
+                            nome
+                        )
+                    `)
+                    .order('nome')
+                    .range(inicio, inicio + itensPorPagina - 1);
+
+                console.log('Dados recebidos:', listadeProdutos)
+                console.log('Erro (se houver):', errolistaProdutos)
+
+                if (errolistaProdutos) {
+                    alert('Erro ao carregar produtos: ' + errolistaProdutos.message)
+                    return
+                }
+
+                const listaProdutos = document.getElementById('lista-de-produtos')
+                if (!listaProdutos) {
+                    console.error('Elemento lista-de-produtos não encontrado')
+                    return
+                }
+
+                if (!listadeProdutos || listadeProdutos.length === 0) {
+                    console.log('Nenhum produto encontrado')
+                    listaProdutos.innerHTML = '<p class="text-center text-gray-500">Nenhum produto encontrado</p>'
+                    return
+                }
+
+                const produtoHtml = listadeProdutos.map(produto => `
+                    <article class="product-card bg-white rounded-lg shadow overflow-hidden" 
+                             data-category="${produto.categorias?.nome || ''}" 
+                             data-location="${produto.localizacao || ''}" 
+                             data-certification="${produto.certificacoes?.nome || ''}"
+                             data-id="${produto.id}">
+                        <div class="h-48 bg-gray-200 relative">
+                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
+                                ${produto.nome}
+                            </div>
+                            <img src="${produto.imagem_url || produto.imagem_base64 || '/imgs/tecido-organico.jpg'}" alt="${produto.nome}" class="absolute inset-0 w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-bold text-dark">${produto.nome}</h4>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">${produto.categorias?.nome || 'Sem categoria'}</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1 line-clamp-2">${produto.descricao ? produto.descricao.substring(0, 100) + '...' : ''}</p>
+                            <div class="mt-3 flex items-center">
+                                <span class="text-primary font-bold">R$ ${produto.preco?.toFixed(2) || '0,00'}</span>
+                                <span class="text-xs text-gray-500 ml-1">/${produto.unidade || 'unidade'}</span>
+                            </div>
+                            <div class="mt-3 flex items-center text-sm text-gray-500">
+                                <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
+                                <span>${produto.localizacao || 'Localização não informada'}</span>
+                            </div>
+                            ${produto.certificacoes?.nome ? `
+                            <div class="mt-2 flex items-center text-sm text-purple-600">
+                                <i class="fas fa-certificate mr-1" aria-hidden="true"></i>
+                                <span>${produto.certificacoes.nome}</span>
+                            </div>
+                            ` : ''}
+                            <div class="mt-4 flex justify-between">
+                                <a href="produto.html?id=${produto.id}">
+                                    <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
+                                </a>
+                                <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
+                                    <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `).join('')
+
+                console.log('HTML gerado:', produtoHtml)
+                listaProdutos.innerHTML = produtoHtml
+
+                // Atualiza a paginação
+                atualizarPaginacao(pagina, totalPaginas);
+
+            } catch (error) {
+                console.error('Erro ao carregar produtos:', error)
+                alert('Erro ao carregar produtos: ' + error.message)
+            }
+        }
+
+        // Função para atualizar a paginação
+        function atualizarPaginacao(paginaAtual, totalPaginas) {
+            const paginacao = document.querySelector('.paginacao');
+            if (!paginacao) return;
+
+            let paginacaoHtml = `
+                <ul class="flex items-center space-x-1">
+                    <li>
+                        <button onclick="carregarProdutos(${paginaAtual - 1})" 
+                                class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100 ${paginaAtual === 1 ? 'opacity-50 cursor-not-allowed' : ''}"
+                                ${paginaAtual === 1 ? 'disabled' : ''}>
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                    </li>`;
+
+            // Mostra até 5 páginas
+            const inicio = Math.max(1, paginaAtual - 2);
+            const fim = Math.min(totalPaginas, inicio + 4);
+
+            for (let i = inicio; i <= fim; i++) {
+                paginacaoHtml += `
+                    <li>
+                        <button onclick="carregarProdutos(${i})" 
+                                class="px-3 py-1 rounded-md ${i === paginaAtual ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'}"
+                                aria-current="${i === paginaAtual ? 'page' : 'false'}">
+                            ${i}
+                        </button>
+                    </li>`;
+            }
+
+            paginacaoHtml += `
+                    <li>
+                        <button onclick="carregarProdutos(${paginaAtual + 1})" 
+                                class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100 ${paginaAtual === totalPaginas ? 'opacity-50 cursor-not-allowed' : ''}"
+                                ${paginaAtual === totalPaginas ? 'disabled' : ''}>
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                </ul>`;
+
+            paginacao.innerHTML = paginacaoHtml;
+        }
+
+        // Carregar produtos quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => carregarProdutos(1));
+    </script>
     <script src="js/script.js"></script>
+    <script src="js/user-info.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        // Função para alternar entre visualização em grade e lista
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridViewBtn = document.getElementById('gridViewBtn');
+            const listViewBtn = document.getElementById('listViewBtn');
+            const listaProdutos = document.getElementById('lista-de-produtos');
+            const productCards = document.querySelectorAll('.product-card');
+
+            function updateView(isListView) {
+                // Remove classes de animação anteriores
+                listaProdutos.classList.remove('grid-view', 'list-view');
+                productCards.forEach(card => card.classList.remove('grid-view', 'list-view'));
+
+                // Adiciona classes de animação
+                void listaProdutos.offsetWidth; // Força um reflow
+                listaProdutos.classList.add(isListView ? 'list-view' : 'grid-view');
+                productCards.forEach(card => card.classList.add(isListView ? 'list-view' : 'grid-view'));
+
+                if (isListView) {
+                    listaProdutos.classList.remove('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'gap-6');
+                    listaProdutos.classList.add('flex', 'flex-col', 'space-y-4');
+                    productCards.forEach(card => {
+                        card.classList.add('flex', 'flex-row');
+                        const imgContainer = card.querySelector('.h-48');
+                        imgContainer.classList.add('w-48', 'flex-shrink-0');
+                        const contentContainer = card.querySelector('.p-4');
+                        contentContainer.classList.add('flex-grow');
+                    });
+                    listViewBtn.classList.add('bg-primary', 'text-white');
+                    gridViewBtn.classList.remove('bg-primary', 'text-white');
+                } else {
+                    listaProdutos.classList.remove('flex', 'flex-col', 'space-y-4');
+                    listaProdutos.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'gap-6');
+                    productCards.forEach(card => {
+                        card.classList.remove('flex', 'flex-row');
+                        const imgContainer = card.querySelector('.h-48');
+                        imgContainer.classList.remove('w-48', 'flex-shrink-0');
+                        const contentContainer = card.querySelector('.p-4');
+                        contentContainer.classList.remove('flex-grow');
+                    });
+                    gridViewBtn.classList.add('bg-primary', 'text-white');
+                    listViewBtn.classList.remove('bg-primary', 'text-white');
+                }
+            }
+
+            gridViewBtn.addEventListener('click', () => updateView(false));
+            listViewBtn.addEventListener('click', () => updateView(true));
+        });
+    </script>
+    <script>
+        // Função para carregar estatísticas
+        async function carregarEstatisticas() {
+            try {
+                // Buscar total de produtos
+                const { count: totalProdutos } = await supabase
+                    .from('produtos')
+                    .select('*', { count: 'exact', head: true });
+
+                // Buscar total de usuários
+                const { count: totalProdutores } = await supabase
+                    .from('usuarios')
+                    .select('*', { count: 'exact', head: true });
+
+                // Atualizar os elementos na página
+                document.getElementById('totalProdutos').textContent = totalProdutos || 0;
+                document.getElementById('totalProdutores').textContent = totalProdutores || 0;
+
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas:', error);
+            }
+        }
+
+        // Carregar estatísticas quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarEstatisticas();
+        });
+    </script>
 </body>
 </html>

@@ -184,3 +184,69 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 });
+
+// Inicialização do Supabase
+const supabaseUrl = 'https://fvzvspqvcxwlwfctmtdt.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2enZzcHF2Y3h3bHdmY3RtdGR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MzM3NDcsImV4cCI6MjA2NTAwOTc0N30.cDyPMw6u5mW7CBjImHfxlV0qmJ1hMtwQ9c0kT-vKibc'
+const supabase = supabase.createClient(supabaseUrl, supabaseKey)
+
+// Função para carregar produtos
+async function carregarProdutos() {
+    try {
+        const { data: listadeProdutos, error: errolistaProdutos } = await supabase
+            .from('produtos')
+            .select('*')
+
+        if (errolistaProdutos) {
+            alert('Erro ao carregar produtos:', errolistaProdutos)
+            return
+        }
+
+        const listaProdutos = document.getElementById('lista-de-produtos')
+        if (!listaProdutos) return
+
+        const produtoHtml = listadeProdutos.map(produto => `
+            <article class="product-card bg-white rounded-lg shadow overflow-hidden" 
+                     data-category="${produto.categoria || ''}" 
+                     data-location="${produto.localizacao || ''}" 
+                     data-certification="${produto.certificacao || ''}">
+                <div class="h-48 bg-gray-200 relative">
+                    <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">
+                        ${produto.nome}
+                    </div>
+                    <img src="${produto.imagem || '/imgs/tecido-organico.jpg'}" alt="${produto.nome}" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h4 class="font-bold text-dark">${produto.nome}</h4>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">${produto.categoria || 'Orgânico'}</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-1">${produto.descricao || ''}</p>
+                    <div class="mt-3 flex items-center">
+                        <span class="text-primary font-bold">R$ ${produto.preco || '45,00'}</span>
+                        <span class="text-xs text-gray-500 ml-1">/metro</span>
+                    </div>
+                    <div class="mt-3 flex items-center text-sm text-gray-500">
+                        <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i>
+                        <span>${produto.localizacao || 'São Paulo, SP'}</span>
+                    </div>
+                    <div class="mt-4 flex justify-between">
+                        <a href="produto.html?id=${produto.id}">
+                            <button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button>
+                        </a>
+                        <button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm">
+                            <i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar
+                        </button>
+                    </div>
+                </div>
+            </article>
+        `).join('')
+
+        listaProdutos.innerHTML = produtoHtml
+    } catch (error) {
+        console.error('Erro ao carregar produtos:', error)
+    }
+}
+
+// Carregar produtos quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', carregarProdutos)

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Hub - Cadastro de Produto</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4D00',
+                        dark: '#313131',
+                        light: '#FFFFFF',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex">
+    <aside id="sidebar" class="sidebar sidebar-expanded bg-dark text-white h-screen fixed left-0 top-0 overflow-y-auto z-30">
+        <div class="flex items-center justify-between p-4 border-b border-gray-700">
+            <div class="flex items-center">
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
+                </svg>
+                <span class="ml-2 text-xl font-bold sidebar-text">Supply<span class="text-primary">Hub</span></span>
+            </div>
+            <button id="toggleSidebar" class="text-gray-300 hover:text-white" aria-label="Alternar menu lateral" aria-expanded="true">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="p-4 border-b border-gray-700">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                    JP
+                </div>
+                <div class="ml-3 sidebar-text">
+                    <p class="font-medium">João Paulo</p>
+                    <p class="text-xs text-gray-400">Produtor</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="p-4" aria-label="Navegação principal">
+            <ul class="space-y-2">
+                <li>
+                    <a href="home.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-home w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Início</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="meus_produtos-produtor.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-box w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Produtos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="cadastro_produto.html" class="flex items-center p-2 rounded-md bg-gray-700 text-white">
+                        <i class="fas fa-plus-circle w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Cadastrar Produto</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-shopping-cart w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Pedidos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-chart-line w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Análises</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-money-bill-wave w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Investimentos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="perfil_usuario.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-user w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Meu Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-cog w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="mt-auto p-4 border-t border-gray-700">
+            <a href="index.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                <i class="fas fa-sign-out-alt w-5" aria-hidden="true"></i>
+                <span class="ml-3 sidebar-text">Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <main id="mainContent" class="main-content-shifted main-content-transition flex-1">
+        <header class="bg-white shadow-sm">
+            <div class="flex justify-between items-center px-6 py-3">
+                <h1 class="text-xl font-bold text-dark">Cadastro de Produto</h1>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Notificações">
+                        <i class="fas fa-bell" aria-hidden="true"></i>
+                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
+                    </button>
+                    <button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Mensagens">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <form id="cadastroProdutoForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome do Produto *</label>
+                            <input type="text" id="nome" name="nome" required
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+
+                        <div>
+                            <label for="categoria" class="block text-sm font-medium text-gray-700 mb-1">Categoria *</label>
+                            <select id="categoria" name="categoria" required
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Selecione uma categoria</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="preco" class="block text-sm font-medium text-gray-700 mb-1">Preço</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">R$</span>
+                                <input type="number" id="preco" name="preco" step="0.01" min="0" required
+                                    class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                    placeholder="0,00">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="preco_promocional" class="block text-sm font-medium text-gray-700 mb-1">Preço Promocional (opcional)</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">R$</span>
+                                <input type="number" id="preco_promocional" name="preco_promocional" step="0.01" min="0"
+                                    class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                    placeholder="0,00">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="unidade" class="block text-sm font-medium text-gray-700 mb-1">Unidade de Medida *</label>
+                            <select id="unidade" name="unidade" required
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Selecione uma unidade</option>
+                                <option value="kg">Quilograma (kg)</option>
+                                <option value="g">Grama (g)</option>
+                                <option value="l">Litro (l)</option>
+                                <option value="ml">Mililitro (ml)</option>
+                                <option value="m">Metro (m)</option>
+                                <option value="m2">Metro Quadrado (m²)</option>
+                                <option value="un">Unidade</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="quantidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade Disponível *</label>
+                            <input type="number" id="quantidade" name="quantidade" required
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+
+                        <div>
+                            <label for="localizacao" class="block text-sm font-medium text-gray-700 mb-1">Localização *</label>
+                            <select id="localizacao" name="localizacao" required
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Selecione uma região</option>
+                                <option value="Norte">Norte</option>
+                                <option value="Nordeste">Nordeste</option>
+                                <option value="Centro-Oeste">Centro-Oeste</option>
+                                <option value="Sudeste">Sudeste</option>
+                                <option value="Sul">Sul</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="certificacao" class="block text-sm font-medium text-gray-700 mb-1">Certificação</label>
+                            <select id="certificacao" name="certificacao"
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Selecione uma certificação</option>
+                            </select>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="descricao" class="block text-sm font-medium text-gray-700 mb-1">Descrição do Produto *</label>
+                            <textarea id="descricao" name="descricao" rows="4" required
+                                class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Imagem do Produto *</label>
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                    <div id="preview-container" class="hidden mb-4">
+                                        <img id="preview-image" src="" alt="Preview" class="mx-auto max-h-48 rounded-lg">
+                                    </div>
+                                    <svg id="upload-icon" class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="imagem" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-orange-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
+                                            <span>Upload de arquivo</span>
+                                            <input id="imagem" name="imagem" type="file" class="sr-only" accept="image/*" required>
+                                        </label>
+                                        <p class="pl-1">ou arraste e solte</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">PNG, JPG, GIF até 10MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-4">
+                        <button type="button" onclick="window.location.href='meus_produtos-produtor.html'"
+                            class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            Cancelar
+                        </button>
+                        <button type="submit"
+                            class="px-4 py-2 border border-transparent rounded-md shadow-sm text-white bg-primary hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            Cadastrar Produto
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Inicialização do Supabase
+        const supabaseUrl = 'https://fvzvspqvcxwlwfctmtdt.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2enZzcHF2Y3h3bHdmY3RtdGR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MzM3NDcsImV4cCI6MjA2NTAwOTc0N30.cDyPMw6u5mW7CBjImHfxlV0qmJ1hMtwQ9c0kT-vKibc'
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+
+        // Função para carregar categorias
+        async function carregarCategorias() {
+            try {
+                const { data: categorias, error } = await supabase
+                    .from('categorias')
+                    .select('*')
+                    .order('nome');
+
+                if (error) throw error;
+
+                const selectCategoria = document.getElementById('categoria');
+                selectCategoria.innerHTML = '<option value="">Selecione uma categoria</option>';
+                
+                categorias.forEach(categoria => {
+                    const option = document.createElement('option');
+                    option.value = categoria.id;
+                    option.textContent = categoria.nome;
+                    selectCategoria.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar categorias:', error);
+                alert('Erro ao carregar categorias: ' + error.message);
+            }
+        }
+
+        // Função para carregar certificações
+        async function carregarCertificacoes() {
+            try {
+                const { data: certificacoes, error } = await supabase
+                    .from('certificacoes')
+                    .select('*')
+                    .order('nome');
+
+                if (error) throw error;
+
+                const selectCertificacao = document.getElementById('certificacao');
+                if (!selectCertificacao) return;
+
+                // Limpar opções existentes
+                selectCertificacao.innerHTML = '<option value="">Selecione uma certificação</option>';
+
+                // Adicionar opções de certificações
+                certificacoes.forEach(certificacao => {
+                    const option = document.createElement('option');
+                    option.value = certificacao.id;
+                    option.textContent = certificacao.nome;
+                    selectCertificacao.appendChild(option);
+                });
+
+                console.log('Certificações carregadas:', certificacoes);
+            } catch (error) {
+                console.error('Erro ao carregar certificações:', error);
+                alert('Erro ao carregar certificações: ' + error.message);
+            }
+        }
+
+        // Função para converter imagem em base64
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Manipulador do formulário
+        document.getElementById('cadastroProdutoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            try {
+                const formData = new FormData(e.target);
+                const imagem = formData.get('imagem');
+                let imagem_base64 = null;
+
+                if (imagem && imagem.size > 0) {
+                    imagem_base64 = await getBase64(imagem);
+                }
+
+                const produto = {
+                    nome: formData.get('nome'),
+                    categoria_id: formData.get('categoria'),
+                    certificacao_id: formData.get('certificacao') || null,
+                    preco: parseFloat(formData.get('preco')),
+                    preco_promocional: formData.get('preco_promocional') ? parseFloat(formData.get('preco_promocional')) : null,
+                    unidade: formData.get('unidade'),
+                    quantidade_estoque: parseInt(formData.get('quantidade')),
+                    localizacao: formData.get('localizacao'),
+                    descricao: formData.get('descricao'),
+                    imagem_base64: imagem_base64,
+                    data_criacao: new Date().toISOString()
+                };
+
+                const { data, error } = await supabase
+                    .from('produtos')
+                    .insert([produto]);
+
+                if (error) throw error;
+
+                alert('Produto cadastrado com sucesso!');
+                window.location.href = 'meus_produtos-produtor.html';
+            } catch (error) {
+                console.error('Erro ao cadastrar produto:', error);
+                alert('Erro ao cadastrar produto: ' + error.message);
+            }
+        });
+
+        // Carregar categorias e certificações quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarCategorias();
+            carregarCertificacoes();
+        });
+
+        // Função para mostrar preview da imagem
+        document.getElementById('imagem').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                const previewContainer = document.getElementById('preview-container');
+                const previewImage = document.getElementById('preview-image');
+                const uploadIcon = document.getElementById('upload-icon');
+
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                    uploadIcon.classList.add('hidden');
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Função para drag and drop
+        const dropZone = document.querySelector('.border-dashed');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            dropZone.classList.add('border-primary');
+        }
+
+        function unhighlight(e) {
+            dropZone.classList.remove('border-primary');
+        }
+
+        dropZone.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const file = dt.files[0];
+            
+            if (file && file.type.startsWith('image/')) {
+                const input = document.getElementById('imagem');
+                input.files = dt.files;
+                
+                const event = new Event('change');
+                input.dispatchEvent(event);
+            }
+        }
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/user-info.js"></script>
+</body>
+</html> 

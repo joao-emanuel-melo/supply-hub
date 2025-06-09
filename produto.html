@@ -10,14 +10,42 @@
 
     <link rel="stylesheet" href="css/produto-style.css">
 
+    <style>
+        .sidebar {
+            width: 280px;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar-collapsed {
+            width: 80px;
+        }
+
+        .sidebar-collapsed .sidebar-text {
+            display: none;
+        }
+
+        .main-content-shifted {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content-shifted.sidebar-collapsed {
+            margin-left: 80px;
+        }
+
+        .main-content-transition {
+            transition: margin-left 0.3s ease;
+        }
+    </style>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FF4D00', 
-                        white: '#FFFFFF',
+                        primary: '#FF4D00',
                         dark: '#313131',
+                        light: '#FFFFFF',
                     }
                 }
             }
@@ -25,7 +53,8 @@
     </script>
 </head>
 <body class="bg-gray-50 min-h-screen flex">
-    <div class="flex items-center justify-between p-4 border-b border-gray-700">
+    <aside id="sidebar" class="sidebar sidebar-expanded bg-dark text-white h-screen fixed left-0 top-0 overflow-y-auto z-30">
+        <div class="flex items-center justify-between p-4 border-b border-gray-700">
             <div class="flex items-center">
                 <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
@@ -36,7 +65,7 @@
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-        <!--Formatação do nome do usuário Inicio-->
+
         <div class="p-4 border-b border-gray-700">
             <div class="flex items-center">
                 <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
@@ -47,12 +76,12 @@
                     <p class="text-xs text-gray-400">Produtor</p>
                 </div>
             </div>
-        </div><!--Formatação do nome do usuário Inicio-->
-        <!--Menu de navegação-->
+        </div>
+
         <nav class="p-4" aria-label="Navegação principal">
             <ul class="space-y-2">
                 <li>
-                    <a href="home.HTML" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                    <a href="home.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
                         <i class="fas fa-home w-5" aria-hidden="true"></i>
                         <span class="ml-3 sidebar-text">Início</span>
                     </a>
@@ -82,6 +111,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="perfil_usuario.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i class="fas fa-user w-5" aria-hidden="true"></i>
+                        <span class="ml-3 sidebar-text">Meu Perfil</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
                         <i class="fas fa-cog w-5" aria-hidden="true"></i>
                         <span class="ml-3 sidebar-text">Configurações</span>
@@ -89,217 +124,826 @@
                 </li>
             </ul>
         </nav>
-    <header class="bg-primary text-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                {/* Link para a Home Page */}
-                <a href="home.html" class="text-2xl font-bold">Supply Hub</a>
-            </div>
-            <nav class="flex items-center space-x-4" aria-label="Navegação do cabeçalho">
-                <a href="#" class="hover:text-white/80" aria-label="Buscar">
-                    <i class="fas fa-search"></i>
-                </a>
-                <a href="#" class="hover:text-white/80" aria-label="Carrinho de compras">
-                    <i class="fas fa-shopping-cart"></i>
-                    {/* Pode adicionar um contador de itens no carrinho aqui */}
-                </a>
-                <a href="#" class="hover:text-white/80" aria-label="Perfil do usuário">
-                    <i class="fas fa-user"></i>
-                </a>
-            </nav>
+
+        <div class="mt-auto p-4 border-t border-gray-700">
+            <a href="index.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                <i class="fas fa-sign-out-alt w-5" aria-hidden="true"></i>
+                <span class="ml-3 sidebar-text">Sair</span>
+            </a>
         </div>
-    </header>
+    </aside>
 
-    <main class="container mx-auto px-4 py-6">
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <nav aria-label="breadcrumb" class="mb-6 text-sm text-gray-600">
-                <ol class="list-none p-0 inline-flex">
-                    <li class="flex items-center">
-                        <a href="index.html" class="hover:text-primary">Início</a>
-                        <i class="fas fa-chevron-right mx-2 text-xs text-gray-400"></i>
-                    </li>
-                    <li class="flex items-center">
-                        <a href="#" class="hover:text-primary">Mobiliário</a> {/* Categoria do produto */}
-                        <i class="fas fa-chevron-right mx-2 text-xs text-gray-400"></i>
-                    </li>
-                    <li class="flex items-center text-gray-800" aria-current="page">
-                        Cadeira Ergonômica Profissional
-                    </li>
-                </ol>
-            </nav>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <div class="carousel-container mb-6">
-                        <div class="carousel" id="productImageCarousel">
-                            <div class="carousel-item">
-                                <div class="carousel-image-placeholder">
-                                    {/* Imagem real iria aqui: <img src="path/to/image1.jpg" alt="Cadeira Ergonômica - Vista Frontal"> */}
-                                    <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="10">Imagem 1</text></svg>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="carousel-image-placeholder">
-                                    <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="10">Imagem 2</text></svg>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="carousel-image-placeholder">
-                                   <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="10">Imagem 3</text></svg>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-nav prev" aria-label="Imagem anterior">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="carousel-nav next" aria-label="Próxima imagem">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    <div class="carousel-dots" id="productCarouselDots">
-                        {/* Os dots serão gerados pelo JavaScript ou podem ser adicionados manualmente se o número de slides for fixo */}
-                    </div>
+    <main id="mainContent" class="main-content-shifted main-content-transition flex-1">
+        <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="home.html" class="flex items-center">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
+                        </svg>
+                        <span class="ml-2 text-2xl font-bold text-white">Supply<span class="text-white">Hub</span></span>
+                    </a>
                 </div>
-
-                <div>
-                    <h1 class="text-3xl font-bold text-dark mb-2">Cadeira Ergonômica Profissional</h1>
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars flex mr-2" aria-label="Avaliação: 4.5 de 5 estrelas">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="#tab-reviews-content" class="text-dark/70 hover:text-primary">(127 avaliações)</a>
-                    </div>
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <span class="text-3xl font-bold text-primary">R$ 1.299,90</span>
-                            <span class="text-dark/70 line-through ml-2">R$ 1.599,90</span>
-                        </div>
-                        <span class="badge badge--in-stock bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">Em estoque</span>
-                    </div>
-                    
-                    <div class="flex flex-col md:flex-row gap-4 mb-6">
-                        <div class="quantity-selector">
-                            <button class="quantity-btn" id="quantityDecrementBtn" aria-label="Diminuir quantidade">-</button>
-                            <input type="text" class="quantity-input" id="productQuantityInput" value="1" readonly aria-label="Quantidade do produto">
-                            <button class="quantity-btn" id="quantityIncrementBtn" aria-label="Aumentar quantidade">+</button>
-                        </div>
-                        <button class="button btn-primary py-3 px-6 rounded-lg flex-grow transition duration-300 flex items-center justify-center">
-                            <i class="fas fa-shopping-cart mr-2"></i>
-                            Adicionar ao Carrinho
-                        </button>
-                        <button class="button btn-secondary py-3 px-6 rounded-lg flex-grow transition duration-300 flex items-center justify-center">
-                            <i class="fas fa-bolt mr-2"></i>
-                            Comprar Agora
-                        </button>
-                    </div>
-                </div>
+                <nav class="flex items-center space-x-4" aria-label="Navegação do cabeçalho">
+                    <a href="#" class="hover:text-white/80" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <a href="#" class="hover:text-white/80" aria-label="Carrinho de compras">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    <a href="#" class="hover:text-white/80" aria-label="Perfil do usuário">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </nav>
             </div>
+        </header>
 
-            <div class="product-info-tabs mt-8">
-                <div class="tabs-navigation border-b border-gray-300 mb-6">
-                    <div class="flex flex-wrap -mb-px">
-                        <button class="tab-button active" data-tab-target="#tab-reviews-content">
-                            <i class="fas fa-star mr-2"></i>Avaliações
-                        </button>
-                        <button class="tab-button" data-tab-target="#tab-details-content">
-                            <i class="fas fa-info-circle mr-2"></i>Informações
-                        </button>
-                        <button class="tab-button" data-tab-target="#tab-supplier-content">
-                            <i class="fas fa-building mr-2"></i>Fornecedor
-                        </button>
-                    </div>
-                </div>
+        <main class="container mx-auto px-4 py-6">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <nav aria-label="breadcrumb" class="mb-6 text-sm text-gray-600">
+                    <ol class="list-none p-0 inline-flex">
+                        <li class="flex items-center">
+                            <a href="index.html" class="hover:text-primary">Início</a>
+                            <i class="fas fa-chevron-right mx-2 text-xs text-gray-400"></i>
+                        </li>
+                        <li class="flex items-center">
+                            <a href="#" class="hover:text-primary breadcrumb-categoria">Categoria</a>
+                            <i class="fas fa-chevron-right mx-2 text-xs text-gray-400"></i>
+                        </li>
+                        <li class="flex items-center text-gray-800 breadcrumb-produto" aria-current="page">
+                            ${produto.nome}
+                        </li>
+                    </ol>
+                </nav>
 
-                <div id="tab-reviews-content" class="tab-content-panel active">
-                    <h2 class="text-xl font-semibold mb-4 text-dark">Avaliações de Clientes</h2>
-                    <div class="mb-6">
-                        <div class="flex items-center mb-4">
-                            <div class="rating-stars flex mr-2" aria-label="Média de avaliação: 4.5 de 5 estrelas">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <span class="text-lg font-medium text-dark">4.5 de 5</span>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <article class="review-item border-b border-gray-200 pb-4">
-                                <header class="flex items-center mb-2">
-                                    <div class="user-avatar w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold mr-3">M</div>
-                                    <div>
-                                        <h4 class="font-medium text-dark">Maria Silva</h4>
-                                        <div class="rating-stars flex" aria-label="Avaliação de Maria: 5 de 5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="carousel-container mb-6">
+                            <div class="carousel" id="productImageCarousel">
+                                <div class="carousel-item">
+                                    <div class="carousel-image-placeholder">
+                                        <img src="${produto.imagem_base64}" alt="${produto.nome}">
                                     </div>
-                                    <time datetime="2023-05-12" class="ml-auto text-sm text-dark/70">12/05/2023</time>
-                                </header>
-                                <p class="text-dark">Excelente cadeira! Muito confortável para longas horas de trabalho. A montagem foi fácil e o material é de ótima qualidade. Recomendo!</p>
-                            </article>
-                            {/* */}
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="carousel-image-placeholder">
+                                        <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="10">Imagem 2</text></svg>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="carousel-image-placeholder">
+                                       <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="10">Imagem 3</text></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-nav prev" aria-label="Imagem anterior">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-nav next" aria-label="Próxima imagem">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-dots" id="productCarouselDots">
+                            {/* Os dots serão gerados pelo JavaScript ou podem ser adicionados manualmente se o número de slides for fixo */}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1 class="text-3xl font-bold text-dark mb-2">${produto.nome}</h1>
+                        <div class="flex items-center mb-4">
+                            <div class="rating-stars flex mr-2" aria-label="Avaliação: 4.5 de 5 estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <a href="#tab-reviews-content" class="text-dark/70 hover:text-primary">(127 avaliações)</a>
+                        </div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="text-3xl font-bold text-primary">R$ ${produto.preco_promocional}</span>
+                                <span class="text-dark/70 line-through ml-2">R$ ${produto.preco}</span>
+                            </div>
+                            <span class="badge badge--in-stock bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">Em estoque</span>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-4 mb-6">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" id="quantityDecrementBtn" aria-label="Diminuir quantidade">-</button>
+                                <input type="text" class="quantity-input" id="productQuantityInput" value="1" readonly aria-label="Quantidade do produto">
+                                <button class="quantity-btn" id="quantityIncrementBtn" aria-label="Aumentar quantidade">+</button>
+                            </div>
+                            <button class="button btn-primary py-3 px-6 rounded-lg flex-grow transition duration-300 flex items-center justify-center">
+                                <i class="fas fa-shopping-cart mr-2"></i>
+                                Adicionar ao Carrinho
+                            </button>
+                            <button class="button btn-secondary py-3 px-6 rounded-lg flex-grow transition duration-300 flex items-center justify-center">
+                                <i class="fas fa-bolt mr-2"></i>
+                                Comprar Agora
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div id="tab-details-content" class="tab-content-panel">
-                    <h2 class="text-xl font-semibold mb-4 text-dark">Detalhes do Produto</h2>
-                    <div class="space-y-6">
-                        <section aria-labelledby="product-description-heading">
-                            <h3 id="product-description-heading" class="text-lg font-semibold mb-3 text-dark">Descrição</h3>
-                            <p class="text-dark">A Cadeira Ergonômica Profissional foi projetada para oferecer o máximo de conforto...</p>
-                        </section>
-                        <section aria-labelledby="product-specs-heading">
-                            <h3 id="product-specs-heading" class="text-lg font-semibold mb-3 text-dark">Especificações Técnicas</h3>
-                            <ul class="list-disc pl-5 text-dark space-y-2">
-                                <li>Material: Estrutura em aço cromado e assento em malha respirável</li>
-                                {/* */}
-                            </ul>
-                        </section>
-                    </div>
-                </div>
-
-                <div id="tab-supplier-content" class="tab-content-panel">
-                     <h2 class="text-xl font-semibold mb-4 text-dark">Informações do Fornecedor</h2>
-                     {/* */}
-                </div>
-            </div>
-        </div>
-        
-        <section class="related-products bg-white rounded-lg shadow-lg p-6" aria-labelledby="related-products-heading">
-            <h2 id="related-products-heading" class="text-2xl font-bold mb-6 text-dark">Produtos Relacionados</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <article class="product-card">
-                    <div class="product-card__image-placeholder">
-                        <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="8">Produto Rel.</text></svg>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-dark mb-2">Apoio para Pés Ergonômico</h3>
-                        <div class="rating-stars flex mb-2" aria-label="Avaliação: 4 de 5 estrelas">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                <div class="product-info-tabs mt-8">
+                    <div class="tabs-navigation border-b border-gray-300 mb-6">
+                        <div class="flex flex-wrap -mb-px">
+                            <button class="tab-button active" data-tab-target="#tab-reviews-content">
+                                <i class="fas fa-star mr-2"></i>Avaliações
+                            </button>
+                            <button class="tab-button" data-tab-target="#tab-details-content">
+                                <i class="fas fa-info-circle mr-2"></i>Informações
+                            </button>
+                            <button class="tab-button" data-tab-target="#tab-supplier-content">
+                                <i class="fas fa-building mr-2"></i>Fornecedor
+                            </button>
                         </div>
-                        <p class="text-primary font-bold">R$ 189,90</p>
                     </div>
-                </article>
-                {/* */}
+
+                    <div id="tab-reviews-content" class="tab-content-panel active">
+                        <h2 class="text-xl font-semibold mb-4 text-dark">Avaliações de Clientes</h2>
+                        
+                        <!-- Formulário de Avaliação -->
+                        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                            <h3 class="text-lg font-medium text-dark mb-4">Deixe sua Avaliação</h3>
+                            <form id="reviewForm" class="space-y-4">
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="text-dark font-medium">Sua Avaliação:</span>
+                                    <div class="rating-input flex items-center">
+                                        <button type="button" class="text-2xl text-gray-300 hover:text-primary transition-colors" data-rating="1">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <button type="button" class="text-2xl text-gray-300 hover:text-primary transition-colors" data-rating="2">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <button type="button" class="text-2xl text-gray-300 hover:text-primary transition-colors" data-rating="3">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <button type="button" class="text-2xl text-gray-300 hover:text-primary transition-colors" data-rating="4">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <button type="button" class="text-2xl text-gray-300 hover:text-primary transition-colors" data-rating="5">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="reviewTitle" class="block text-sm font-medium text-dark mb-1">Título da Avaliação</label>
+                                    <input type="text" id="reviewTitle" name="title" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Ex: Excelente produto!">
+                                </div>
+
+                                <div>
+                                    <label for="reviewComment" class="block text-sm font-medium text-dark mb-1">Sua Avaliação</label>
+                                    <textarea id="reviewComment" name="comment" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Conte-nos sua experiência com o produto..."></textarea>
+                                </div>
+
+                                <div class="flex items-center space-x-4">
+                                    <button type="submit" class="bg-primary text-white px-6 py-2 rounded-md hover:bg-orange-600 transition-colors">
+                                        Enviar Avaliação
+                                    </button>
+                                    <button type="reset" class="border border-gray-300 text-gray-600 px-6 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                        Limpar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex items-center mb-4">
+                                <div class="rating-stars flex mr-2" aria-label="Média de avaliação: 4.5 de 5 estrelas">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-lg font-medium text-dark">4.5 de 5</span>
+                            </div>
+
+                            <div class="space-y-4" id="reviewsList">
+                                <!-- As avaliações serão carregadas aqui -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-details-content" class="tab-content-panel">
+                        <h2 class="text-xl font-semibold mb-4 text-dark">Detalhes do Produto</h2>
+                        <div class="space-y-6">
+                            <section aria-labelledby="product-description-heading" class="bg-gray-50 p-6 rounded-lg">
+                                <h3 id="product-description-heading" class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-align-left mr-2 text-primary"></i>
+                                    Descrição
+                                </h3>
+                                <div class="prose max-w-none">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="space-y-4">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                                                    <i class="fas fa-info-circle text-primary"></i>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h4 class="text-sm font-medium text-dark mb-1">Visão Geral</h4>
+                                                    <p class="text-dark/80 leading-relaxed">${produto.descricao || 'Sem descrição disponível'}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            ${produto.beneficios ? `
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                                    <i class="fas fa-check-circle text-green-600"></i>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h4 class="text-sm font-medium text-dark mb-1">Benefícios</h4>
+                                                    <ul class="list-none space-y-2">
+                                                        ${produto.beneficios.map(beneficio => `
+                                                            <li class="flex items-center text-dark/80">
+                                                                <i class="fas fa-chevron-right text-primary text-xs mr-2"></i>
+                                                                ${beneficio}
+                                                            </li>
+                                                        `).join('')}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            ` : ''}
+
+                                            ${produto.aplicacoes ? `
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                                    <i class="fas fa-tools text-blue-600"></i>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h4 class="text-sm font-medium text-dark mb-1">Aplicações</h4>
+                                                    <ul class="list-none space-y-2">
+                                                        ${produto.aplicacoes.map(aplicacao => `
+                                                            <li class="flex items-center text-dark/80">
+                                                                <i class="fas fa-chevron-right text-primary text-xs mr-2"></i>
+                                                                ${aplicacao}
+                                                            </li>
+                                                        `).join('')}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            ` : ''}
+
+                                            ${produto.cuidados ? `
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
+                                                    <i class="fas fa-exclamation-circle text-yellow-600"></i>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h4 class="text-sm font-medium text-dark mb-1">Cuidados e Recomendações</h4>
+                                                    <ul class="list-none space-y-2">
+                                                        ${produto.cuidados.map(cuidado => `
+                                                            <li class="flex items-center text-dark/80">
+                                                                <i class="fas fa-chevron-right text-primary text-xs mr-2"></i>
+                                                                ${cuidado}
+                                                            </li>
+                                                        `).join('')}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section aria-labelledby="product-specs-heading" class="bg-gray-50 p-6 rounded-lg">
+                                <h3 id="product-specs-heading" class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-list-ul mr-2 text-primary"></i>
+                                    Especificações Técnicas
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-3">
+                                        <div class="flex items-start">
+                                            <span class="font-medium text-dark min-w-[120px]">Material:</span>
+                                            <span class="text-dark">${produto.material || 'Não informado'}</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="font-medium text-dark min-w-[120px]">Dimensões:</span>
+                                            <span class="text-dark">${produto.dimensoes || 'Não informado'}</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="font-medium text-dark min-w-[120px]">Peso:</span>
+                                            <span class="text-dark">${produto.peso || 'Não informado'}</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-start">
+                                            <span class="font-medium text-dark min-w-[120px]">Unidade:</span>
+                                            <span class="text-dark">${produto.unidade || 'Não informado'}</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="font-medium text-dark min-w-[120px]">Estoque:</span>
+                                            <span class="text-dark">${produto.quantidade_estoque || '0'} unidades</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="font-medium text-dark min-w-[120px]">Código:</span>
+                                            <span class="text-dark">${produto.codigo || 'Não informado'}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section aria-labelledby="product-features-heading" class="bg-gray-50 p-6 rounded-lg">
+                                <h3 id="product-features-heading" class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-star mr-2 text-primary"></i>
+                                    Características
+                                </h3>
+                                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    ${produto.caracteristicas ? produto.caracteristicas.map(caracteristica => `
+                                        <li class="flex items-center text-dark">
+                                            <i class="fas fa-check text-primary mr-2"></i>
+                                            ${caracteristica}
+                                        </li>
+                                    `).join('') : '<li class="text-dark">Nenhuma característica informada</li>'}
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div id="tab-supplier-content" class="tab-content-panel">
+                        <h2 class="text-xl font-semibold mb-4 text-dark">Informações do Fornecedor</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-dark mb-2">Informações Básicas</h3>
+                                <div class="space-y-2">
+                                    <p><span class="font-medium">Nome:</span> <span id="fornecedor-nome">${produto.fornecedores?.nome || 'Não informado'}</span></p>
+                                    <p><span class="font-medium">CNPJ:</span> <span id="fornecedor-cnpj">${produto.fornecedores?.cnpj || 'Não informado'}</span></p>
+                                    <p><span class="font-medium">Endereço:</span> <span id="fornecedor-endereco">${produto.fornecedores?.endereco || 'Não informado'}</span></p>
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-dark mb-2">Contato</h3>
+                                <div class="space-y-2">
+                                    <p><span class="font-medium">Telefone:</span> <span id="fornecedor-telefone">${produto.fornecedores?.telefone || 'Não informado'}</span></p>
+                                    <p><span class="font-medium">Email:</span> <span id="fornecedor-email">${produto.fornecedores?.email || 'Não informado'}</span></p>
+                                    <p><span class="font-medium">Site:</span> <span id="fornecedor-site">${produto.fornecedores?.site || 'Não informado'}</span></p>
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-dark mb-2">Inscrições</h3>
+                                <div class="space-y-2">
+                                    <p><span class="font-medium">Inscrição Estadual:</span> <span id="fornecedor-ie">${produto.fornecedores?.inscricao_estadual || 'Não informado'}</span></p>
+                                    <p><span class="font-medium">Inscrição Municipal:</span> <span id="fornecedor-im">${produto.fornecedores?.inscricao_municipal || 'Não informado'}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <section class="related-products bg-white rounded-lg shadow-lg p-6" aria-labelledby="related-products-heading">
+                <h2 id="related-products-heading" class="text-2xl font-bold mb-6 text-dark">Produtos Relacionados</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                    <article class="product-card">
+                        <div class="product-card__image-placeholder">
+                            <svg class="w-full h-full text-gray-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><text x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="8">Produto Rel.</text></svg>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium text-dark mb-2">${produto.nome}</h3>
+                            <div class="rating-stars flex mb-2" aria-label="Avaliação: 4 de 5 estrelas">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            </div>
+                            <p class="text-primary font-bold">R$ ${produto.preco}</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="page-footer bg-dark text-white mt-10">
+            <div class="container mx-auto px-4 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Supply Hub</h3>
+                        <p class="text-white/70">Sua plataforma completa para compra de produtos industriais e corporativos.</p>
+                    </div>
+                </div>
+                <div class="border-t border-white/20 mt-8 pt-6 text-center text-white/70">
+                    <p>© <span id="footerCurrentYear"></span> Supply Hub. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
     </main>
 
-    <footer class="page-footer bg-dark text-white mt-10">
-        <div class="container mx-auto px-4 py-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Supply Hub</h3>
-                    <p class="text-white/70">Sua plataforma completa para compra de produtos industriais e corporativos.</p>
-                </div>
-                {/* */}
-            </div>
-            <div class="border-t border-white/20 mt-8 pt-6 text-center text-white/70">
-                <p>© <span id="footerCurrentYear"></span> Supply Hub. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Inicialização do Supabase
+        const supabaseUrl = 'https://fvzvspqvcxwlwfctmtdt.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2enZzcHF2Y3h3bHdmY3RtdGR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MzM3NDcsImV4cCI6MjA2NTAwOTc0N30.cDyPMw6u5mW7CBjImHfxlV0qmJ1hMtwQ9c0kT-vKibc'
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
+        // Função para obter o ID do produto da URL
+        function getProductId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // Função para carregar os detalhes do produto
+        async function carregarProduto() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const produtoId = urlParams.get('id');
+
+                if (!produtoId) {
+                    alert('ID do produto não fornecido');
+                    return;
+                }
+
+                const { data: produto, error } = await supabase
+                    .from('produtos')
+                    .select(`
+                        *,
+                        categorias (
+                            nome
+                        ),
+                        certificacoes (
+                            nome
+                        )
+                    `)
+                    .eq('id', produtoId)
+                    .single();
+
+                if (error) {
+                    throw error;
+                }
+
+                if (!produto) {
+                    alert('Produto não encontrado');
+                    return;
+                }
+
+                // Atualizar breadcrumb
+                const breadcrumbCategoria = document.querySelector('.breadcrumb-categoria');
+                if (breadcrumbCategoria) {
+                    breadcrumbCategoria.textContent = produto.categorias?.nome || 'Categoria';
+                }
+
+                // Atualizar título do produto no breadcrumb
+                const breadcrumbProduto = document.querySelector('.breadcrumb-produto');
+                if (breadcrumbProduto) {
+                    breadcrumbProduto.textContent = produto.nome;
+                }
+
+                // Atualizar título principal
+                const tituloProduto = document.querySelector('h1.text-3xl.font-bold.text-dark');
+                if (tituloProduto) {
+                    tituloProduto.textContent = produto.nome;
+                }
+
+                // Atualizar preço
+                const precoElement = document.querySelector('.text-3xl.font-bold.text-primary');
+                const precoPromocionalElement = document.querySelector('.text-dark\\/70.line-through.ml-2');
+                if (precoElement) {
+                    if (produto.preco_promocional) {
+                        precoElement.textContent = `R$ ${produto.preco_promocional.toFixed(2)}`;
+                        if (precoPromocionalElement) {
+                            precoPromocionalElement.textContent = `R$ ${produto.preco.toFixed(2)}`;
+                            precoPromocionalElement.style.display = 'inline';
+                        }
+                    } else {
+                        precoElement.textContent = `R$ ${produto.preco?.toFixed(2) || '0,00'}`;
+                        if (precoPromocionalElement) {
+                            precoPromocionalElement.style.display = 'none';
+                        }
+                    }
+                }
+
+                // Atualizar descrição na aba de detalhes
+                const descricaoElement = document.querySelector('#tab-details-content');
+                if (descricaoElement) {
+                    descricaoElement.textContent = produto.descricao || 'Sem descrição';
+                }
+
+                // Atualizar material
+                const materialElement = document.querySelector('#tab-details-content .list-disc li');
+                if (materialElement) {
+                    materialElement.textContent = `Material: ${produto.material || 'Não informado'}`;
+                }
+
+                // Atualizar descrição do fornecedor
+                const fornecedorElement = document.querySelector('#tab-supplier-content p');
+                if (fornecedorElement) {
+                    fornecedorElement.textContent = produto.fornecedores?.nome || 'Não informado';
+                }
+
+                // Atualizar informações detalhadas do fornecedor
+                const fornecedorInfo = {
+                    'fornecedor-nome': produto.fornecedores?.nome,
+                    'fornecedor-cnpj': produto.fornecedores?.cnpj,
+                    'fornecedor-endereco': produto.fornecedores?.endereco,
+                    'fornecedor-telefone': produto.fornecedores?.telefone,
+                    'fornecedor-email': produto.fornecedores?.email,
+                    'fornecedor-site': produto.fornecedores?.site,
+                    'fornecedor-ie': produto.fornecedores?.inscricao_estadual,
+                    'fornecedor-im': produto.fornecedores?.inscricao_municipal
+                };
+
+                Object.entries(fornecedorInfo).forEach(([id, value]) => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = value || 'Não informado';
+                    }
+                });
+
+                // Atualizar localização
+                const localizacaoElement = document.querySelector('.text-dark\\/70.ml-2');
+                if (localizacaoElement) {
+                    localizacaoElement.innerHTML = `
+                        <i class="fas fa-map-marker-alt mr-2" aria-hidden="true"></i>
+                        ${produto.localizacao || 'Localização não informada'}
+                    `;
+                }
+
+                // Atualizar certificação
+                const certificacaoElement = document.querySelector('.text-purple-600.mt-2');
+                if (certificacaoElement) {
+                    if (produto.certificacoes?.nome) {
+                        certificacaoElement.innerHTML = `
+                            <i class="fas fa-certificate mr-2" aria-hidden="true"></i>
+                            ${produto.certificacoes.nome}
+                        `;
+                        certificacaoElement.style.display = 'block';
+                    } else {
+                        certificacaoElement.style.display = 'none';
+                    }
+                }
+
+                // Atualizar imagem do produto
+                const imagemElement = document.querySelector('.carousel-image-placeholder img');
+                if (imagemElement) {
+                    imagemElement.src = produto.imagem_base64 || '/imgs/tecido-organico.jpg';
+                    imagemElement.alt = produto.nome;
+                }
+
+                // Atualizar quantidade em estoque
+                const estoqueElement = document.querySelector('.badge--in-stock');
+                if (estoqueElement) {
+                    if (produto.quantidade_estoque > 0) {
+                        estoqueElement.textContent = 'Em estoque';
+                        estoqueElement.classList.add('bg-primary/10', 'text-primary');
+                        estoqueElement.classList.remove('bg-red-100', 'text-red-800');
+                    } else {
+                        estoqueElement.textContent = 'Fora de estoque';
+                        estoqueElement.classList.add('bg-red-100', 'text-red-800');
+                        estoqueElement.classList.remove('bg-primary/10', 'text-primary');
+                    }
+                }
+
+                console.log('Produto carregado:', produto);
+
+            } catch (error) {
+                console.error('Erro ao carregar produto:', error);
+                alert('Erro ao carregar produto: ' + error.message);
+            }
+        }
+
+        // Carregar detalhes do produto quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', carregarProduto);
+    </script>
+    <script src="js/script.js"></script>
     <script src="js/produto-script.js"></script>
+    <script src="js/user-info.js"></script>
+    <script>
+        // Função para alternar o menu lateral
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleSidebarBtn = document.getElementById('toggleSidebar');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+
+            function toggleSidebar() {
+                const isCurrentlyExpanded = !sidebar.classList.contains('sidebar-collapsed');
+                sidebar.classList.toggle('sidebar-collapsed');
+                mainContent.classList.toggle('sidebar-collapsed');
+                localStorage.setItem('sidebarExpanded', !isCurrentlyExpanded);
+                
+                // Atualizar o atributo aria-expanded
+                toggleSidebarBtn.setAttribute('aria-expanded', !isCurrentlyExpanded);
+            }
+
+            // Configurar estado inicial
+            if (!isExpanded) {
+                sidebar.classList.add('sidebar-collapsed');
+                mainContent.classList.add('sidebar-collapsed');
+                toggleSidebarBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            // Adicionar evento de clique ao botão
+            toggleSidebarBtn.addEventListener('click', toggleSidebar);
+        });
+    </script>
+    <script>
+    // Função para carregar as avaliações
+    async function carregarAvaliacoes() {
+        try {
+            const produtoId = getProductId();
+            const { data: avaliacoes, error } = await supabase
+                .from('avaliacoes')
+                .select(`
+                    *,
+                    usuarios (
+                        nome,
+                        email
+                    )
+                `)
+                .eq('produto_id', produtoId)
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            const reviewsList = document.getElementById('reviewsList');
+            if (!reviewsList) return;
+
+            if (!avaliacoes || avaliacoes.length === 0) {
+                reviewsList.innerHTML = '<p class="text-center text-gray-500">Nenhuma avaliação ainda.</p>';
+                return;
+            }
+
+            // Calcular média das avaliações
+            const mediaAvaliacoes = avaliacoes.reduce((acc, curr) => acc + curr.nota, 0) / avaliacoes.length;
+            
+            // Atualizar a média exibida
+            const mediaElement = document.querySelector('.rating-stars + span');
+            if (mediaElement) {
+                mediaElement.textContent = `${mediaAvaliacoes.toFixed(1)} de 5`;
+            }
+
+            reviewsList.innerHTML = avaliacoes.map(avaliacao => `
+                <article class="review-item border-b border-gray-200 pb-4">
+                    <header class="flex items-center mb-2">
+                        <div class="user-avatar w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold mr-3">
+                            ${avaliacao.usuarios?.nome?.charAt(0) || avaliacao.usuarios?.email?.charAt(0) || 'U'}
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-dark">${avaliacao.usuarios?.nome || avaliacao.usuarios?.email?.split('@')[0] || 'Usuário'}</h4>
+                            <div class="rating-stars flex" aria-label="Avaliação: ${avaliacao.nota} de 5 estrelas">
+                                ${Array(5).fill().map((_, i) => `
+                                    <i class="fas fa-star ${i < avaliacao.nota ? 'text-yellow-400' : 'text-gray-300'}"></i>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <time datetime="${avaliacao.created_at}" class="ml-auto text-sm text-dark/70">
+                            ${new Date(avaliacao.created_at).toLocaleDateString('pt-BR')}
+                        </time>
+                    </header>
+                    <h5 class="font-medium text-dark mb-1">${avaliacao.titulo}</h5>
+                    <p class="text-dark">${avaliacao.comentario}</p>
+                </article>
+            `).join('');
+
+        } catch (error) {
+            console.error('Erro ao carregar avaliações:', error);
+        }
+    }
+
+    // Função para enviar avaliação
+    async function enviarAvaliacao(event) {
+        event.preventDefault();
+        
+        // Verificar se o usuário está logado
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+            alert('Por favor, faça login para enviar uma avaliação.');
+            return;
+        }
+
+        const form = event.target;
+        const nota = form.querySelector('.rating-input .text-primary')?.dataset.rating;
+        const titulo = form.querySelector('#reviewTitle').value;
+        const comentario = form.querySelector('#reviewComment').value;
+
+        if (!nota) {
+            alert('Por favor, selecione uma nota para o produto.');
+            return;
+        }
+
+        if (!titulo.trim()) {
+            alert('Por favor, adicione um título para sua avaliação.');
+            return;
+        }
+
+        if (!comentario.trim()) {
+            alert('Por favor, adicione um comentário para sua avaliação.');
+            return;
+        }
+
+        try {
+            // Primeiro, verificar se o usuário já avaliou este produto
+            const { data: avaliacaoExistente } = await supabase
+                .from('avaliacoes')
+                .select('id')
+                .eq('produto_id', getProductId())
+                .eq('usuario_id', user.id)
+                .single();
+
+            if (avaliacaoExistente) {
+                alert('Você já avaliou este produto. Deseja atualizar sua avaliação?');
+                if (confirm('Deseja atualizar sua avaliação?')) {
+                    const { error: updateError } = await supabase
+                        .from('avaliacoes')
+                        .update({
+                            nota: parseInt(nota),
+                            titulo: titulo,
+                            comentario: comentario,
+                            updated_at: new Date().toISOString()
+                        })
+                        .eq('id', avaliacaoExistente.id);
+
+                    if (updateError) throw updateError;
+                } else {
+                    return;
+                }
+            } else {
+                // Inserir nova avaliação
+                const { error: insertError } = await supabase
+                    .from('avaliacoes')
+                    .insert([
+                        {
+                            produto_id: getProductId(),
+                            usuario_id: user.id,
+                            nota: parseInt(nota),
+                            titulo: titulo,
+                            comentario: comentario,
+                            created_at: new Date().toISOString()
+                        }
+                    ]);
+
+                if (insertError) throw insertError;
+            }
+
+            alert('Avaliação enviada com sucesso!');
+            form.reset();
+            resetRatingStars();
+            await carregarAvaliacoes();
+            
+        } catch (error) {
+            console.error('Erro ao enviar avaliação:', error);
+            alert('Erro ao enviar avaliação. Por favor, tente novamente.');
+        }
+    }
+
+    // Função para resetar as estrelas
+    function resetRatingStars() {
+        const stars = document.querySelectorAll('.rating-input button');
+        stars.forEach(star => {
+            star.classList.remove('text-primary');
+            star.classList.add('text-gray-300');
+        });
+    }
+
+    // Inicialização dos eventos
+    document.addEventListener('DOMContentLoaded', function() {
+        const reviewForm = document.getElementById('reviewForm');
+        const ratingInputs = document.querySelectorAll('.rating-input button');
+
+        // Evento para as estrelas
+        ratingInputs.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = this.dataset.rating;
+                resetRatingStars();
+                
+                ratingInputs.forEach(s => {
+                    if (s.dataset.rating <= rating) {
+                        s.classList.remove('text-gray-300');
+                        s.classList.add('text-primary');
+                    }
+                });
+            });
+
+            star.addEventListener('mouseover', function() {
+                const rating = this.dataset.rating;
+                ratingInputs.forEach(s => {
+                    if (s.dataset.rating <= rating) {
+                        s.classList.remove('text-gray-300');
+                        s.classList.add('text-primary');
+                    }
+                });
+            });
+
+            star.addEventListener('mouseout', function() {
+                const activeRating = document.querySelector('.rating-input .text-primary')?.dataset.rating;
+                if (activeRating) {
+                    ratingInputs.forEach(s => {
+                        if (s.dataset.rating <= activeRating) {
+                            s.classList.remove('text-gray-300');
+                            s.classList.add('text-primary');
+                        } else {
+                            s.classList.remove('text-primary');
+                            s.classList.add('text-gray-300');
+                        }
+                    });
+                } else {
+                    resetRatingStars();
+                }
+            });
+        });
+
+        // Evento para o formulário
+        reviewForm.addEventListener('submit', enviarAvaliacao);
+
+        // Carregar avaliações iniciais
+        carregarAvaliacoes();
+        });
+    </script>
 </body>
 </html>

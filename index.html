@@ -65,7 +65,7 @@
                                     <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                                     <label for="remember-me" class="ml-2 block text-sm text-gray-600">Lembrar-me</label>
                                 </div>
-                                <a href="#" class="text-sm text-primary hover:underline">Esqueceu a senha?</a>
+                                <a href="reset-password.html" class="text-sm text-primary hover:underline">Esqueceu a senha?</a>
                             </div>
                             
                             <div>
@@ -88,20 +88,32 @@
                         
                         <form id="registerForm" class="space-y-6 hidden">
                             <h2 class="text-2xl font-bold text-center text-dark mb-8">Crie sua conta</h2>
-        
-                            <div class="relative input-focus-effect border-b-2 border-gray-300">
-                                <input type="text" id="registerName" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required>
-                                <label for="registerName" class="absolute top-3 left-0 text-gray-500 pointer-events-none">Nome completo</label>
-                            </div>
-                    
-                            <div class="relative input-focus-effect border-b-2 border-gray-300">
-                                <input type="email" id="registerEmail" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required>
-                                <label for="registerEmail" class="absolute top-3 left-0 text-gray-500 pointer-events-none">E-mail</label>
-                            </div>
                             
-                            <div class="relative input-focus-effect border-b-2 border-gray-300">
-                                <input type="password" id="registerPassword" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required minlength="6">
-                                <label for="registerPassword" class="absolute top-3 left-0 text-gray-500 pointer-events-none">Crie uma senha</label>
+                            <div class="space-y-4">
+                                <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                    <input type="text" id="registerCompany" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required>
+                                    <label for="registerCompany" class="absolute top-3 left-0 text-gray-500 pointer-events-none">Nome da Empresa</label>
+                                </div>
+
+                                <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                    <input type="text" id="registerCnpj" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required>
+                                    <label for="registerCnpj" class="absolute top-3 left-0 text-gray-500 pointer-events-none">CNPJ</label>
+                                </div>
+
+                                <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                    <input type="email" id="registerEmail" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required>
+                                    <label for="registerEmail" class="absolute top-3 left-0 text-gray-500 pointer-events-none">E-mail</label>
+                                </div>
+
+                                <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                    <input type="password" id="registerPassword" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required minlength="6">
+                                    <label for="registerPassword" class="absolute top-3 left-0 text-gray-500 pointer-events-none">Crie uma senha</label>
+                                </div>
+
+                                <div class="relative input-focus-effect border-b-2 border-gray-300">
+                                    <input type="password" id="registerPasswordConfirm" class="block w-full px-0 py-3 text-dark bg-transparent appearance-none focus:outline-none" placeholder=" " required minlength="6">
+                                    <label for="registerPasswordConfirm" class="absolute top-3 left-0 text-gray-500 pointer-events-none">Confirme sua senha</label>
+                                </div>
                             </div>
                     
                             <div>
