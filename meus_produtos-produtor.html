@@ -22,415 +22,261 @@
             }
         }
     </script>
+    <style>
+        .sidebar { width: 280px; transition: width 0.3s ease; }
+        .sidebar-collapsed { width: 80px; }
+        .sidebar-collapsed .sidebar-text { display: none; }
+        .main-content-shifted { margin-left: 280px; transition: margin-left 0.3s ease; }
+        .main-content-shifted.sidebar-collapsed { margin-left: 80px; }
+        .main-content-transition { transition: margin-left 0.3s ease; }
+        .product-card { transition: all 0.5s ease-in-out; }
+        .product-card.grid-view { transform-origin: center; animation: gridToGrid 0.5s ease-in-out; }
+        .product-card.list-view { transform-origin: left; animation: gridToList 0.5s ease-in-out; }
+        @keyframes gridToList { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(0.95); opacity: 0.8; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes gridToGrid { 0% { transform: scale(1); } 50% { transform: scale(0.95); } 100% { transform: scale(1); } }
+        #lista-de-produtos { transition: all 0.5s ease-in-out; }
+        #lista-de-produtos.grid-view { animation: fadeIn 0.5s ease-in-out; }
+        #lista-de-produtos.list-view { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0.5; } to { opacity: 1; } }
+    </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex">
     <aside id="sidebar" class="sidebar sidebar-expanded bg-dark text-white h-screen fixed left-0 top-0 overflow-y-auto z-30">
         <div class="flex items-center justify-between p-4 border-b border-gray-700">
             <div class="flex items-center">
-                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
-                </svg>
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path></svg>
                 <span class="ml-2 text-xl font-bold sidebar-text">Supply<span class="text-primary">Hub</span></span>
             </div>
-            <button id="toggleSidebar" class="text-gray-300 hover:text-white" aria-label="Alternar menu lateral" aria-expanded="true">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button id="toggleSidebar" class="text-gray-300 hover:text-white" aria-label="Alternar menu lateral" aria-expanded="true"><i class="fas fa-bars"></i></button>
         </div>
-        <!--Formatação do nome do usuário Inicio-->
-        <div class="p-4 border-b border-gray-700">
-            <div class="flex items-center">
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    JP
-                </div>
-                <div class="ml-3 sidebar-text">
-                    <p class="font-medium">João Paulo</p>
-                    <p class="text-xs text-gray-400">Produtor</p>
-                </div>
-            </div>
-        </div><!--Formatação do nome do usuário Inicio-->
-        <!--Menu de navegação-->
-        <nav class="p-4" aria-label="Navegação principal">
-            <ul class="space-y-2">
-                <li>
-                    <a href="home.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-home w-5" aria-hidden="true"></i>
-                        <span class="ml-3 sidebar-text">Início</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="meus_produtos-produtor.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-box w-5" aria-hidden="true"></i>
-                        <span class="ml-3 sidebar-text">Produtos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-shopping-cart w-5" aria-hidden="true"></i>
-                        <span class="ml-3 sidebar-text">Pedidos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-chart-line w-5" aria-hidden="true"></i>
-                        <span class="ml-3 sidebar-text">Análises</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-money-bill-wave w-5" aria-hidden="true"></i>
-                        <span class="ml-3 sidebar-text">Investimentos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="perfil_usuario.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-user w-5" aria-hidden="true"></i>
-                        <span class="ml-3 sidebar-text">Meu Perfil</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="configuracoes.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                        <i class="fas fa-cog w-5" aria-hidden="true"></i>
-                        <span class="ml-3 sidebar-text">Configurações</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="mt-auto p-4 border-t border-gray-700">
-            <a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-                <i class="fas fa-sign-out-alt w-5" aria-hidden="true"></i>
-                <span class="ml-3 sidebar-text">Sair</span>
-            </a>
-        </div>
+        <div class="p-4 border-b border-gray-700"><div class="flex items-center"><div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold" id="userInitials">JP</div><div class="ml-3 sidebar-text"><p class="font-medium" id="userName">João Paulo</p><p class="text-xs text-gray-400" id="userRole">Produtor</p></div></div></div>
+        <nav class="p-4" aria-label="Navegação principal"><ul class="space-y-2"><li><a href="home.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-home w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Início</span></a></li><li><a href="meus_produtos-produtor.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-box w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Produtos</span></a></li><li><a href="cadastro_produto.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-plus-circle w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Cadastrar Produto</span></a></li><li><a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-shopping-cart w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Pedidos</span></a></li><li><a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-chart-line w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Análises</span></a></li><li><a href="#" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-money-bill-wave w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Investimentos</span></a></li><li><a href="perfil_usuario.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-user w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Meu Perfil</span></a></li><li><a href="configuracoes.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-cog w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Configurações</span></a></li></ul></nav>
+        <div class="mt-auto p-4 border-t border-gray-700"><a href="index.html" class="flex items-center p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"><i class="fas fa-sign-out-alt w-5" aria-hidden="true"></i><span class="ml-3 sidebar-text">Sair</span></a></div>
     </aside>
 
     <main id="mainContent" class="main-content-shifted main-content-transition flex-1">
         <header class="bg-white shadow-sm">
             <div class="flex justify-between items-center px-6 py-3">
-                <div class="flex items-center">
-                    <div class="relative">
-                        <label for="search-input" class="sr-only">Buscar produtos, fornecedores</label>
-                        <input type="text" id="search-input" placeholder="Buscar produtos, fornecedores..." class="pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-80">
-                        <i class="fas fa-search absolute left-3 top-3 text-gray-400" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Notificações">
-                        <i class="fas fa-bell" aria-hidden="true"></i>
-                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
-                    </button>
-                    <button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Mensagens">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span>
-                    </button>
-                    <div class="border-l border-gray-300 h-6"></div>
-                    <div class="flex items-center">
-                        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold" aria-label="Avatar do usuário João Paulo">
-                            JP
-                        </div>
-                    </div>
-                </div>
+                <div class="flex items-center"><div class="relative"><label for="search-input" class="sr-only">Buscar produtos, fornecedores</label><input type="text" id="search-input" placeholder="Buscar produtos, fornecedores..." class="pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-80"><i class="fas fa-search absolute left-3 top-3 text-gray-400" aria-hidden="true"></i></div></div>
+                <div class="flex items-center space-x-4"><button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Notificações"><i class="fas fa-bell" aria-hidden="true"></i><span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span></button><button class="relative p-2 text-gray-600 hover:text-primary" aria-label="Mensagens"><i class="fas fa-envelope" aria-hidden="true"></i><span class="absolute top-0 right-0 h-2 w-2 bg-primary rounded-full"></span></button><div class="border-l border-gray-300 h-6"></div><div class="flex items-center"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold" aria-label="Avatar do usuário João Paulo">JP</div></div></div>
             </div>
         </header>
 
         <div class="p-6">
             <section class="bg-gradient-to-r from-primary to-orange-500 rounded-lg shadow-lg p-6 mb-6 text-white" aria-labelledby="welcome-banner-heading">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div>
-                        <h1 id="welcome-banner-heading" class="text-2xl font-bold mb-2">Bem-vindo ao Supply Hub!</h1>
-                        <p class="mb-4">Conectando pequenos produtores e indústrias de forma sustentável.</p>
-                        <button class="bg-white text-primary font-medium px-4 py-2 rounded-md hover:bg-gray-100 transition-colors">
-                            Explorar Produtos
-                        </button>
-                    </div>
-                    <div class="mt-4 md:mt-0">
-                        <svg class="w-40 h-40" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-                            <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"></circle>
-                            <path d="M65 80L100 50L135 80L135 130L100 160L65 130L65 80Z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"></path>
-                            <path d="M85 100L100 90L115 100L115 120L100 130L85 120L85 100Z" fill="white"></path>
-                        </svg>
-                    </div>
+                    <div><h1 id="welcome-banner-heading" class="text-2xl font-bold mb-2">Bem-vindo ao Supply Hub!</h1><p class="mb-4">Conectando pequenos produtores e indústrias de forma sustentável.</p><button class="bg-white text-primary font-medium px-4 py-2 rounded-md hover:bg-gray-100 transition-colors">Explorar Produtos</button></div>
+                    <div class="mt-4 md:mt-0"><svg class="w-40 h-40" viewBox="0 0 200 200" fill="none" aria-hidden="true"><circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"></circle><path d="M65 80L100 50L135 80L135 130L100 160L65 130L65 80Z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"></path><path d="M85 100L100 90L115 100L115 120L100 130L85 120L85 100Z" fill="white"></path></svg></div>
                 </div>
             </section>
 
             <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6" aria-label="Estatísticas principais">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-orange-100 text-primary">
-                            <i class="fas fa-box-open text-xl" aria-hidden="true"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-gray-500 text-sm">Produtos Disponíveis</h3>
-                            <p class="text-2xl font-semibold text-dark">1,254</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-green-100 text-green-600">
-                            <i class="fas fa-users text-xl" aria-hidden="true"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-gray-500 text-sm">Produtores Ativos</h3>
-                            <p class="text-2xl font-semibold text-dark">328</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
-                            <i class="fas fa-handshake text-xl" aria-hidden="true"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-gray-500 text-sm">Parcerias Realizadas</h3>
-                            <p class="text-2xl font-semibold text-dark">86</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
-                            <i class="fas fa-certificate text-xl" aria-hidden="true"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-gray-500 text-sm">Certificações Sustentáveis</h3>
-                            <p class="text-2xl font-semibold text-dark">42</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div class="flex items-center"><div class="p-3 rounded-full bg-orange-100 text-primary"><i class="fas fa-box-open text-xl" aria-hidden="true"></i></div><div class="ml-4"><h3 class="text-gray-500 dark:text-gray-400 text-sm">Produtos Disponíveis</h3><p class="text-2xl font-semibold text-dark dark:text-white" id="totalProdutos">0</p></div></div></div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div class="flex items-center"><div class="p-3 rounded-full bg-green-100 text-green-600"><i class="fas fa-users text-xl" aria-hidden="true"></i></div><div class="ml-4"><h3 class="text-gray-500 dark:text-gray-400 text-sm">Produtores Ativos</h3><p class="text-2xl font-semibold text-dark dark:text-white" id="totalProdutores">0</p></div></div></div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div class="flex items-center"><div class="p-3 rounded-full bg-blue-100 text-blue-600"><i class="fas fa-handshake text-xl" aria-hidden="true"></i></div><div class="ml-4"><h3 class="text-gray-500 dark:text-gray-400 text-sm">Parcerias Realizadas</h3><p class="text-2xl font-semibold text-dark dark:text-white">10.000+</p></div></div></div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div class="flex items-center"><div class="p-3 rounded-full bg-purple-100 text-purple-600"><i class="fas fa-certificate text-xl" aria-hidden="true"></i></div><div class="ml-4"><h3 class="text-gray-500 dark:text-gray-400 text-sm">Certificações Sustentáveis</h3><p class="text-2xl font-semibold text-dark dark:text-white">100</p></div></div></div>
             </section>
 
             <section class="mb-6" aria-labelledby="products-heading">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 id="products-heading" class="text-xl font-bold text-dark">Meus Produtos</h2>
-                    <div class="flex items-center space-x-4">
-                        <button id="addProductBtn" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors flex items-center">
-                            <i class="fas fa-plus mr-2"></i>
-                            Adicionar Produto
-                        </button>
-                        <div class="flex items-center space-x-2">
-                            <button id="gridViewBtn" class="p-2 bg-primary text-white rounded-l-md" aria-label="Visualizar em grade" aria-pressed="true">
-                                <i class="fas fa-th" aria-hidden="true"></i>
-                            </button>
-                            <button id="listViewBtn" class="p-2 bg-gray-200 text-gray-600 rounded-r-md" aria-label="Visualizar em lista" aria-pressed="false">
-                                <i class="fas fa-list" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
+                <div class="flex justify-between items-center mb-4"><h2 id="products-heading" class="text-xl font-bold text-dark">Produtos em Destaque</h2><div class="flex items-center space-x-2"><button id="gridViewBtn" class="p-2 bg-primary text-white rounded-l-md" aria-label="Visualizar em grade" aria-pressed="true"><i class="fas fa-th" aria-hidden="true"></i></button><button id="listViewBtn" class="p-2 bg-gray-200 text-gray-600 rounded-r-md" aria-label="Visualizar em lista" aria-pressed="false"><i class="fas fa-list" aria-hidden="true"></i></button></div></div>
+                <div class="bg-white p-4 rounded-lg shadow mb-4">
+                    <form id="filter-form" class="flex flex-wrap items-end gap-4">
+                        <div class="flex-1 min-w-[200px]"><label for="filter-category" class="block text-sm font-medium text-gray-700 mb-1">Categoria</label><select id="filter-category" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"><option value="">Todas as categorias</option><option>Orgânico</option><option>Matéria-prima</option><option>Equipamentos</option><option>Serviços</option><option>Embalagem</option><option>Energia Renovável</option><option>Ecológico</option></select></div>
+                        <div class="flex-1 min-w-[200px]"><label for="filter-location" class="block text-sm font-medium text-gray-700 mb-1">Localização</label><select id="filter-location" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"><option value="">Todas as localizações</option><option>Norte</option><option>Nordeste</option><option>Centro-Oeste</option><option>Sudeste</option><option>Sul</option></select></div>
+                        <div class="flex-1 min-w-[200px]"><label for="filter-certification" class="block text-sm font-medium text-gray-700 mb-1">Certificação</label><select id="filter-certification" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"><option value="">Todas as certificações</option><option>Orgânico</option><option>Comércio Justo</option><option>Carbono Neutro</option><option>ISO 14001</option></select></div>
+                        <div><button type="submit" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors">Filtrar</button></div>
+                    </form>
                 </div>
-
-                <div id="lista-de-produtos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Os produtos serão carregados aqui dinamicamente -->
-                </div>
-
-                <div id="paginacao" class="mt-8 flex justify-center">
-                    <!-- A paginação será carregada aqui dinamicamente -->
-                </div>
+                <div id="lista-de-produtos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <div class="paginacao mt-8 flex justify-center"></div>
             </section>
 
-            <script>
-                // Inicialização do Supabase
-                const supabaseUrl = 'https://qgxqjqjqjqjqjqjqjqjq.supabase.co';
-                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFneHFqcWpxanFqcWpxanFqcWpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk5MjQ5NzAsImV4cCI6MjA1NTUwMDk3MH0.qgxqjqjqjqjqjqjqjqjqjqjqjqjqjqjqjqjqjqjqjqjq';
-                const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-                // Função para carregar os produtos
-                async function carregarProdutos(pagina = 1) {
-                    try {
-                        const itensPorPagina = 6;
-                        const inicio = (pagina - 1) * itensPorPagina;
-
-                        // Buscar usuário logado
-                        const { data: { user } } = await supabase.auth.getUser();
-                        if (!user) {
-                            alert('Por favor, faça login para ver seus produtos.');
-                            return;
-                        }
-
-                        // Buscar total de produtos do usuário
-                        const { count } = await supabase
-                            .from('produtos')
-                            .select('*', { count: 'exact', head: true })
-                            .eq('usuario_id', user.id);
-
-                        // Buscar produtos do usuário
-                        const { data: produtos, error } = await supabase
-                            .from('produtos')
-                            .select(`
-                                *,
-                                categorias (
-                                    nome
-                                )
-                            `)
-                            .eq('usuario_id', user.id)
-                            .range(inicio, inicio + itensPorPagina - 1)
-                            .order('created_at', { ascending: false });
-
-                        if (error) throw error;
-
-                        const listaProdutos = document.getElementById('lista-de-produtos');
-                        if (!listaProdutos) return;
-
-                        if (!produtos || produtos.length === 0) {
-                            listaProdutos.innerHTML = `
-                                <div class="col-span-full text-center py-8">
-                                    <p class="text-gray-500 mb-4">Você ainda não cadastrou nenhum produto.</p>
-                                    <button onclick="document.getElementById('addProductBtn').click()" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors">
-                                        Cadastrar Primeiro Produto
-                                    </button>
-                                </div>
-                            `;
-                            return;
-                        }
-
-                        // Renderizar produtos
-                        listaProdutos.innerHTML = produtos.map(produto => `
-                            <article class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
-                                <div class="relative">
-                                    <img src="${produto.imagem_url || 'https://via.placeholder.com/300x200?text=Sem+Imagem'}" 
-                                         alt="${produto.nome}" 
-                                         class="w-full h-48 object-cover">
-                                    <div class="absolute top-2 right-2 flex space-x-2">
-                                        <button onclick="editarProduto(${produto.id})" class="bg-white p-2 rounded-full shadow hover:bg-gray-100">
-                                            <i class="fas fa-edit text-primary"></i>
-                                        </button>
-                                        <button onclick="excluirProduto(${produto.id})" class="bg-white p-2 rounded-full shadow hover:bg-gray-100">
-                                            <i class="fas fa-trash text-red-500"></i>
-                                        </button>
-                                    </div>
-                                    <div class="absolute top-2 left-2">
-                                        <span class="bg-primary text-white px-2 py-1 rounded-full text-xs">
-                                            ${produto.categorias?.nome || 'Sem categoria'}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">${produto.nome}</h3>
-                                    <p class="text-gray-600 text-sm mb-2">${produto.descricao ? produto.descricao.substring(0, 100) + '...' : 'Sem descrição'}</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-primary font-bold">R$ ${produto.preco.toFixed(2)}</span>
-                                        <span class="text-sm text-gray-500">Estoque: ${produto.quantidade}</span>
-                                    </div>
-                                    <div class="mt-2 text-xs text-gray-500">
-                                        <p>Cadastrado em: ${new Date(produto.created_at).toLocaleDateString('pt-BR')}</p>
-                                        ${produto.updated_at ? `<p>Última atualização: ${new Date(produto.updated_at).toLocaleDateString('pt-BR')}</p>` : ''}
-                                    </div>
-                                </div>
-                            </article>
-                        `).join('');
-
-                        // Atualizar paginação
-                        atualizarPaginacao(pagina, Math.ceil(count / itensPorPagina));
-
-                    } catch (error) {
-                        console.error('Erro ao carregar produtos:', error);
-                        alert('Erro ao carregar produtos. Por favor, tente novamente.');
-                    }
-                }
-
-                // Função para atualizar a paginação
-                function atualizarPaginacao(paginaAtual, totalPaginas) {
-                    const paginacao = document.getElementById('paginacao');
-                    if (!paginacao) return;
-
-                    let paginacaoHtml = `
-                        <button onclick="carregarProdutos(${paginaAtual - 1})" 
-                                class="px-3 py-1 rounded-md ${paginaAtual === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-primary hover:bg-gray-100'}"
-                                ${paginaAtual === 1 ? 'disabled' : ''}>
-                            Anterior
-                        </button>
-                    `;
-
-                    const maxPaginas = 5;
-                    let inicio = Math.max(1, paginaAtual - Math.floor(maxPaginas / 2));
-                    let fim = Math.min(totalPaginas, inicio + maxPaginas - 1);
-
-                    if (fim - inicio + 1 < maxPaginas) {
-                        inicio = Math.max(1, fim - maxPaginas + 1);
-                    }
-
-                    for (let i = inicio; i <= fim; i++) {
-                        paginacaoHtml += `
-                            <button onclick="carregarProdutos(${i})" 
-                                    class="px-3 py-1 rounded-md ${i === paginaAtual ? 'bg-primary text-white' : 'bg-white text-primary hover:bg-gray-100'}">
-                                ${i}
-                            </button>
-                        `;
-                    }
-
-                    paginacaoHtml += `
-                        <button onclick="carregarProdutos(${paginaAtual + 1})" 
-                                class="px-3 py-1 rounded-md ${paginaAtual === totalPaginas ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-primary hover:bg-gray-100'}"
-                                ${paginaAtual === totalPaginas ? 'disabled' : ''}>
-                            Próxima
-                        </button>
-                    `;
-
-                    paginacao.innerHTML = paginacaoHtml;
-                }
-
-                // Função para editar produto
-                function editarProduto(id) {
-                    // Implementar lógica de edição
-                    console.log('Editar produto:', id);
-                }
-
-                // Função para excluir produto
-                async function excluirProduto(id) {
-                    if (!confirm('Tem certeza que deseja excluir este produto?')) return;
-
-                    try {
-                        const { error } = await supabase
-                            .from('produtos')
-                            .delete()
-                            .eq('id', id);
-
-                        if (error) throw error;
-
-                        alert('Produto excluído com sucesso!');
-                        carregarProdutos(1); // Recarregar primeira página
-                    } catch (error) {
-                        console.error('Erro ao excluir produto:', error);
-                        alert('Erro ao excluir produto. Por favor, tente novamente.');
-                    }
-                }
-
-                // Carregar produtos quando a página carregar
-                document.addEventListener('DOMContentLoaded', () => {
-                    carregarProdutos(1);
-                });
-            </script>
-
-            <footer class="bg-white border-t border-gray-200 py-4">
-                <div class="container mx-auto px-6">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="mb-4 md:mb-0">
-                            <p class="text-sm text-gray-600">
-                                © <span id="currentYear">2023</span> Supply Hub. Todos os direitos reservados.
-                            </p>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nossa página no Facebook">
-                                <i class="fab fa-facebook" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nosso perfil no Instagram">
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nosso perfil no LinkedIn">
-                                <i class="fab fa-linkedin" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" aria-label="Siga-nos no Twitter">
-                                <i class="fab fa-twitter" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <section class="mb-6" aria-labelledby="partners-heading">
+                <h2 id="partners-heading" class="text-xl font-bold text-dark mb-4">Parceiros Sustentáveis</h2>
+                <div class="bg-white rounded-lg shadow p-6"><div class="grid grid-cols-2 md:grid-cols-4 gap-6"><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center"><svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg></div><p class="mt-2 text-center font-medium">EcoTêxtil</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center"><svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg></div><p class="mt-2 text-center font-medium">GreenTech Solutions</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center"><svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg></div><p class="mt-2 text-center font-medium">Bio Embalagens Brasil</p></div><div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center"><svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg></div><p class="mt-2 text-center font-medium">Consultoria EcoViva</p></div></div><div class="mt-6 text-center"><button class="bg-white border border-primary text-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-colors">Ver todos os parceiros</button></div></div>
+            </section>
         </div>
+
+        <footer class="bg-white border-t border-gray-200 py-4">
+            <div class="container mx-auto px-6"><div class="flex flex-col md:flex-row justify-between items-center"><div class="mb-4 md:mb-0"><p class="text-sm text-gray-600">© <span id="currentYear">2025</span> Supply Hub. Todos os direitos reservados.</p></div><div class="flex space-x-4"><a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nossa página no Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a><a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nosso perfil no Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a><a href="#" class="text-gray-600 hover:text-primary" aria-label="Visite nosso perfil no LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a><a href="#" class="text-gray-600 hover:text-primary" aria-label="Siga-nos no Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></div></div></div>
+        </footer>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+        // Inicialização do Supabase
+        const supabaseUrl = 'https://fvzvspqvcxwlwfctmtdt.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2enZzcHF2Y3h3bHdmY3RtdGR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MzM3NDcsImV4cCI6MjA2NTAwOTc0N30.cDyPMw6u5mW7CBjImHfxlV0qmJ1hMtwQ9c0kT-vKibc';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        
+        // Variável para manter o estado atual dos filtros
+        let currentFilters = {};
+
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // FUNÇÃO carregarProdutos INCREMENTADA PARA ACEITAR FILTROS
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        async function carregarProdutos(pagina = 1, filtros = {}) {
+            try {
+                console.log(`Carregando produtos para página ${pagina} com filtros:`, filtros);
+                const itensPorPagina = 6;
+                const inicio = (pagina - 1) * itensPorPagina;
+
+                let query = supabase
+                    .from('produtos')
+                    .select(`*, categorias(nome), certificacoes(nome)`, { count: 'exact' });
+
+                // ** Lógica de filtragem dinâmica **
+                if (filtros.termoBusca) {
+                    query = query.or(`nome.ilike.%${filtros.termoBusca}%,descricao.ilike.%${filtros.termoBusca}%`);
+                }
+                if (filtros.localizacao) {
+                    query = query.eq('localizacao', filtros.localizacao);
+                }
+                // Adicione aqui a lógica para categoria e certificação se as colunas existirem na tabela 'produtos'
+                // Exemplo: if (filtros.categoria) query = query.eq('nome_da_coluna_categoria', filtros.categoria);
+
+                // Aplica ordenação e paginação
+                query = query.order('nome').range(inicio, inicio + itensPorPagina - 1);
+                
+                const { data: listadeProdutos, error, count } = await query;
+
+                if (error) throw error;
+
+                const listaProdutosEl = document.getElementById('lista-de-produtos');
+                if (!listaProdutosEl) {
+                    console.error('Elemento lista-de-produtos não encontrado');
+                    return;
+                }
+
+                if (!listadeProdutos || listadeProdutos.length === 0) {
+                    listaProdutosEl.innerHTML = '<p class="text-center text-gray-500 col-span-full">Nenhum produto encontrado com os critérios selecionados.</p>';
+                    atualizarPaginacao(0, 0, {}); // Limpa a paginação
+                    return;
+                }
+
+                const produtoHtml = listadeProdutos.map(produto => `
+                    <article class="product-card bg-white rounded-lg shadow overflow-hidden" data-id="${produto.id}">
+                        <div class="h-48 bg-gray-200 relative">
+                            <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold">${produto.categorias?.nome || 'Destaque'}</div>
+                            <img src="${produto.imagem_url || produto.imagem_base64 || '/imgs/tecido-organico.jpg'}" alt="${produto.nome}" class="absolute inset-0 w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start"><h4 class="font-bold text-dark">${produto.nome}</h4><span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">${produto.localizacao || 'N/A'}</span></div>
+                            <p class="text-gray-600 text-sm mt-1 line-clamp-2">${produto.descricao ? produto.descricao.substring(0, 100) + '...' : ''}</p>
+                            <div class="mt-3 flex items-center"><span class="text-primary font-bold">R$ ${produto.preco?.toFixed(2).replace('.', ',') || '0,00'}</span><span class="text-xs text-gray-500 ml-1">/${produto.unidade || 'unidade'}</span></div>
+                            ${produto.certificacoes?.nome ? `<div class="mt-2 flex items-center text-sm text-purple-600"><i class="fas fa-certificate mr-1" aria-hidden="true"></i><span>${produto.certificacoes.nome}</span></div>` : ''}
+                            <div class="mt-4 flex justify-between"><a href="produto.html?id=${produto.id}"><button class="bg-primary text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors text-sm">Ver detalhes</button></a><button class="border border-primary text-primary px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors text-sm"><i class="fas fa-shopping-cart mr-1" aria-hidden="true"></i> Adicionar</button></div>
+                        </div>
+                    </article>`).join('');
+                
+                listaProdutosEl.innerHTML = produtoHtml;
+                const totalPaginas = Math.ceil(count / itensPorPagina);
+                atualizarPaginacao(pagina, totalPaginas, filtros);
+            } catch (error) {
+                console.error('Erro ao carregar produtos:', error.message);
+                document.getElementById('lista-de-produtos').innerHTML = '<p class="text-center text-red-500 col-span-full">Ocorreu um erro ao buscar os produtos.</p>';
+            }
+        }
+
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // FUNÇÃO atualizarPaginacao INCREMENTADA PARA MANTER OS FILTROS
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        function atualizarPaginacao(paginaAtual, totalPaginas, filtros) {
+            const paginacao = document.querySelector('.paginacao');
+            if (!paginacao) return;
+            if (totalPaginas <= 1) {
+                paginacao.innerHTML = '';
+                return;
+            }
+            const filtrosString = JSON.stringify(filtros || {});
+            let paginacaoHtml = `<ul class="flex items-center space-x-1">`;
+            paginacaoHtml += `<li><button ${paginaAtual <= 1 ? 'disabled' : ''} onclick='carregarProdutos(${paginaAtual - 1}, ${filtrosString})' class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"><i class="fas fa-chevron-left" aria-hidden="true"></i></button></li>`;
+            const inicio = Math.max(1, paginaAtual - 2);
+            const fim = Math.min(totalPaginas, inicio + 4);
+            for (let i = inicio; i <= fim; i++) {
+                paginacaoHtml += `<li><button onclick='carregarProdutos(${i}, ${filtrosString})' class="px-3 py-1 rounded-md ${i === paginaAtual ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'}" aria-current="${i === paginaAtual ? 'page' : 'false'}">${i}</button></li>`;
+            }
+            paginacaoHtml += `<li><button ${paginaAtual >= totalPaginas ? 'disabled' : ''} onclick='carregarProdutos(${paginaAtual + 1}, ${filtrosString})' class="px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"><i class="fas fa-chevron-right" aria-hidden="true"></i></button></li>`;
+            paginacaoHtml += `</ul>`;
+            paginacao.innerHTML = paginacaoHtml;
+        }
+
+        async function carregarEstatisticas() {
+            try {
+                const { count: totalProdutos } = await supabase.from('produtos').select('*', { count: 'exact', head: true });
+                const { count: totalProdutores } = await supabase.from('usuarios').select('*', { count: 'exact', head: true });
+                document.getElementById('totalProdutos').textContent = totalProdutos || 0;
+                document.getElementById('totalProdutores').textContent = totalProdutores || 0;
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas:', error);
+            }
+        }
+        
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // LISTENER PRINCIPAL PARA INICIALIZAR A PÁGINA E OS FILTROS
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ** Lógica de filtragem **
+            const filterForm = document.getElementById('filter-form');
+            const searchInput = document.getElementById('search-input');
+
+            if (filterForm) {
+                filterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    currentFilters = {
+                        termoBusca: searchInput.value.trim(),
+                        categoria: document.getElementById('filter-category').value,
+                        localizacao: document.getElementById('filter-location').value,
+                        certificacao: document.getElementById('filter-certification').value
+                    };
+                    Object.keys(currentFilters).forEach(key => {
+                        if (!currentFilters[key]) delete currentFilters[key];
+                    });
+                    carregarProdutos(1, currentFilters);
+                });
+            }
+
+            // ** Lógica de visualização (Grid/List) **
+            const gridViewBtn = document.getElementById('gridViewBtn');
+            const listViewBtn = document.getElementById('listViewBtn');
+            const listaProdutosEl = document.getElementById('lista-de-produtos');
+
+            function updateView(isListView) {
+                if (!listaProdutosEl) return;
+                const cards = listaProdutosEl.querySelectorAll('.product-card');
+                if (isListView) {
+                    listaProdutosEl.classList.remove('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'gap-6');
+                    listaProdutosEl.classList.add('flex', 'flex-col', 'space-y-4');
+                    cards.forEach(card => {
+                        card.classList.add('flex', 'flex-row');
+                        card.querySelector('.h-48').classList.add('w-48', 'flex-shrink-0');
+                    });
+                    listViewBtn.classList.add('bg-primary', 'text-white');
+                    gridViewBtn.classList.remove('bg-primary', 'text-white');
+                } else {
+                    listaProdutosEl.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'gap-6');
+                    listaProdutosEl.classList.remove('flex', 'flex-col', 'space-y-4');
+                    cards.forEach(card => {
+                        card.classList.remove('flex', 'flex-row');
+                        card.querySelector('.h-48').classList.remove('w-48', 'flex-shrink-0');
+                    });
+                    gridViewBtn.classList.add('bg-primary', 'text-white');
+                    listViewBtn.classList.remove('bg-primary', 'text-white');
+                }
+            }
+            if(gridViewBtn) gridViewBtn.addEventListener('click', () => updateView(false));
+            if(listViewBtn) listViewBtn.addEventListener('click', () => updateView(true));
+
+            // Carga inicial dos dados
+            carregarProdutos(1);
+            carregarEstatisticas();
+        });
+    </script>
 
     <script src="js/script.js"></script>
     <script src="js/user-info.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/produto-script.js"></script>
 </body>
 </html>
